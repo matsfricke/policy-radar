@@ -1,11 +1,11 @@
 """HTML-Ausgabe für die Policy Scanning Routine.
 
 Themen-zentrierte, interaktive Website:
-  - Guthaben-Anzeige (geschätzter Verbrauch des GLM-Keys)
   - interaktiver Policy-Radar (Relevanz × Timing, Blasengröße = PR-Potenzial)
   - je Thema EINE Karte, die Fund, Bewertung und PR-Winkel kombiniert
     (kein Scrollen zwischen Schritten); bei hoher Relevanz mit
     vorgeschlagener Presse-Überschrift.
+  - Historie: build_archive_index() rendert die Übersicht vergangener Tage.
 """
 
 from __future__ import annotations
@@ -60,34 +60,6 @@ def _sort_key(t: dict):
     rel = REL_SCORE.get(_norm(t.get("relevanz")), 0)
     pr = {"hoch": 3, "mittel": 2, "niedrig": 1}.get(_norm(t.get("pr_potenzial")), 0)
     return (-rel, -pr)
-
-
-# --------------------------------------------------------------------------- #
-# Guthaben-Widget
-# --------------------------------------------------------------------------- #
-
-def _balance_widget(spend: dict) -> str:
-    if not spend:
-        return ""
-    cur = spend.get("currency", "€")
-    start = float(spend.get("start_balance", 0) or 0)
-    remaining = float(spend.get("remaining", start) or 0)
-    spent = float(spend.get("spent_usd", 0) or 0)
-    pct = max(0.0, min(100.0, (remaining / start * 100) if start else 0))
-    color = "#2e8b57" if pct > 40 else ("#e67e22" if pct > 15 else "#c0392b")
-    runs = spend.get("runs", 0)
-    return f"""
-    <div class="balance">
-      <div class="bal-head">
-        <span class="bal-title">GLM-Key · Guthaben (geschätzt)</span>
-        <span class="bal-num">~{cur}{remaining:.2f} <span class="bal-of">von {cur}{start:.0f}</span></span>
-      </div>
-      <div class="bal-bar"><div class="bal-fill" style="width:{pct:.0f}%;background:{color}"></div></div>
-      <div class="bal-foot">
-        verbraucht ~${spent:.2f} über {runs} Läufe ·
-        <a href="https://z.ai/manage-apikey/billing" target="_blank" rel="noopener">exakter Stand im z.ai-Dashboard →</a>
-      </div>
-    </div>"""
 
 
 # --------------------------------------------------------------------------- #
@@ -234,7 +206,7 @@ def _topic_card(idx: int, t: dict) -> str:
 # Seite
 # --------------------------------------------------------------------------- #
 
-def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = None) -> str:
+def build_report(data: dict, generated_at: dt.datetime) -> str:
     local = generated_at.astimezone()
     datum = f"{local.day}. {MONATE[local.month]} {local.year}"
     kw = _kw(local.date())
@@ -292,16 +264,10 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
   .meta {{ font-size:13.5px; color:var(--muted); margin-bottom:8px; }}
   .meta b {{ color:var(--dark); }}
   .hinweis {{ font-size:14px; color:var(--muted); font-style:italic; margin:6px 0 0; }}
-
-  /* Guthaben */
-  .balance {{ background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin:18px 0 6px; }}
-  .bal-head {{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }}
-  .bal-title {{ font-size:13px; font-weight:700; color:var(--dark); text-transform:uppercase; letter-spacing:.5px; }}
-  .bal-num {{ font-size:20px; font-weight:800; color:var(--dark); }}
-  .bal-of {{ font-size:13px; font-weight:500; color:var(--muted); }}
-  .bal-bar {{ height:9px; background:var(--border); border-radius:6px; overflow:hidden; margin:9px 0 7px; }}
-  .bal-fill {{ height:100%; border-radius:6px; transition:width .4s; }}
-  .bal-foot {{ font-size:12.5px; color:var(--muted); }}
+  .topnav {{ margin:14px 0 4px; }}
+  .topnav a {{ display:inline-block; font-size:14px; font-weight:600; color:var(--teal);
+               border:1px solid var(--border); border-radius:8px; padding:7px 14px; text-decoration:none; background:var(--card); }}
+  .topnav a:hover {{ border-color:var(--teal); }}
 
   /* Chart */
   .chart-card {{ background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px 10px; margin:14px 0 8px; position:relative; }}
@@ -384,7 +350,7 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
     <p class="subtitle">Wirtschafts- und Politikthemen mit PR-Relevanz für TÜV-NORD-Kunden</p>
     <div class="meta"><b>{datum}</b> (KW {kw}) · Bereiche: Zertifizierung · ESG · MedTech · Food · KRITIS · automatisch via GLM-5.2</div>
     {f'<p class="hinweis">{hinweis}</p>' if hinweis else ''}
-    {_balance_widget(spend or {})}
+    <nav class="topnav"><a href="archiv/">🗂 Historie – frühere Tage ansehen</a></nav>
   </header>
 
   {_radar_chart(themen)}
@@ -395,8 +361,8 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
 
   <footer>
     Automatisch erzeugt durch die Policy Scanning Routine · GLM-5.2 · z.ai Web Search.
-    Guthaben ist geschätzt (Token-/Suchverbrauch). Quellen verlinkt; vor Veröffentlichung redaktionell prüfen.
-    · <a href="archiv/">Archiv</a>
+    Quellen verlinkt; vor Veröffentlichung redaktionell prüfen.
+    · <a href="archiv/">🗂 Historie</a>
   </footer>
 </div>
 
@@ -469,5 +435,88 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
     }});
   }});
 </script>
+</body>
+</html>"""
+
+
+# --------------------------------------------------------------------------- #
+# Historie / Archiv-Übersicht
+# --------------------------------------------------------------------------- #
+
+def build_archive_index(history: list[dict]) -> str:
+    """Übersichtsseite aller archivierten Tage (newest first)."""
+    def fmt_date(ds: str) -> str:
+        try:
+            d = dt.date.fromisoformat(ds)
+            return f"{d.day}. {MONATE[d.month]} {d.year}"
+        except Exception:
+            return ds
+
+    rows = []
+    for h in history:
+        ds = h.get("date", "")
+        rel = _norm(h.get("top_relevanz"))
+        rel_color = REL_COLOR.get(rel, "#8a8f98")
+        cnt = h.get("count", 0)
+        hoch = h.get("hoch", 0)
+        badge = (f'<span class="h-badge" style="--c:{rel_color}">{_esc(h.get("top_relevanz"))}</span>'
+                 if h.get("top_relevanz") else "")
+        rows.append(f"""
+        <a class="h-row" href="{_esc(ds)}.html">
+          <div class="h-date">{fmt_date(ds)} <span class="h-kw">KW {h.get('kw','')}</span></div>
+          <div class="h-top">{_esc(h.get('top_headline') or h.get('hinweis') or '—')}</div>
+          <div class="h-meta">{cnt} Themen · {hoch}× hohe Relevanz {badge}</div>
+        </a>""")
+    body = "".join(rows) or '<p class="empty">Noch keine archivierten Tage.</p>'
+
+    return f"""<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Policy Radar – Historie</title>
+<style>
+  :root {{ --teal:{TEAL}; --dark:{DARK}; --bg:#f4f6f8; --card:#fff; --text:#1d2330;
+           --muted:#5a6472; --border:#e2e6eb; --soft:#fbfcfd; }}
+  @media (prefers-color-scheme: dark) {{
+    :root {{ --bg:#0f1620; --card:#17212e; --text:#e6ebf1; --muted:#9aa6b4;
+             --border:#26333f; --soft:#1c2733; --dark:#cfe0ee; }}
+  }}
+  * {{ box-sizing:border-box; }}
+  body {{ font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+          background:var(--bg); color:var(--text); margin:0; line-height:1.5; }}
+  .wrap {{ max-width:820px; margin:0 auto; padding:28px 20px 64px; }}
+  header {{ border-top:6px solid var(--teal); padding-top:18px; margin-bottom:6px; }}
+  .kicker {{ color:var(--teal); font-size:13px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; margin:0 0 6px; }}
+  h1 {{ font-size:27px; margin:0 0 6px; color:var(--dark); }}
+  .sub {{ color:var(--muted); margin:0 0 8px; }}
+  .back {{ display:inline-block; margin:8px 0 20px; font-size:14px; font-weight:600; color:var(--teal);
+           text-decoration:none; border:1px solid var(--border); border-radius:8px; padding:7px 14px; background:var(--card); }}
+  .h-row {{ display:block; text-decoration:none; color:inherit; background:var(--card);
+            border:1px solid var(--border); border-left:4px solid var(--teal); border-radius:10px;
+            padding:14px 16px; margin-bottom:10px; transition:border-color .15s; }}
+  .h-row:hover {{ border-color:var(--teal); }}
+  .h-date {{ font-weight:700; color:var(--dark); font-size:15px; }}
+  .h-kw {{ font-weight:500; color:var(--muted); font-size:13px; margin-left:6px; }}
+  .h-top {{ margin:4px 0 6px; font-size:15px; }}
+  .h-meta {{ font-size:13px; color:var(--muted); }}
+  .h-badge {{ display:inline-block; font-size:11px; font-weight:700; color:#fff; background:var(--c);
+              border-radius:20px; padding:1px 9px; margin-left:6px; }}
+  .empty {{ color:var(--muted); font-style:italic; }}
+  footer {{ margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:12.5px; color:var(--muted); }}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">Policy Scanning Routine · TÜV NORD</p>
+    <h1>🗂 Historie</h1>
+    <p class="sub">Alle bisherigen Tagesscans – bleiben dauerhaft erhalten.</p>
+  </header>
+  <a class="back" href="../">← Zum aktuellen Scan</a>
+  {body}
+  <footer>Automatisch erzeugt durch die Policy Scanning Routine · GLM-5.2.</footer>
+</div>
 </body>
 </html>"""

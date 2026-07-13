@@ -33,8 +33,6 @@ jobs:
           # Optional übersteuerbar:
           GLM_MODEL: ${{ vars.GLM_MODEL || 'glm-5.2' }}
           SEARCH_RECENCY: ${{ vars.SEARCH_RECENCY || 'oneWeek' }}
-          START_BALANCE: ${{ vars.START_BALANCE || '10' }}
-          CURRENCY: ${{ vars.CURRENCY || '€' }}
           # URL des Cloudflare Workers für die Live-Pressemitteilung (leer = Button erklärt sich als inaktiv)
           PM_ENDPOINT: ${{ vars.PM_ENDPOINT }}
         run: python scan.py

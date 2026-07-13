@@ -17,17 +17,16 @@ Themen bewertet und PR-Winkel („Was jetzt tun") erzeugt. Das Ergebnis landet a
    PR-Winkel nach der Erfolgsformel (Entwicklung → Auswirkung → Handlung → TÜV NORD
    Lösung). Bei hoher Relevanz zusätzlich ein Presse-Überschriften-Vorschlag.
 3. **Veröffentlichen** – themen-zentrierte Website mit interaktivem Policy-Radar
-   (Relevanz × Timing) und geschätzter Key-Guthaben-Anzeige. Wird als
-   `docs/index.html` ins Repo committet und von GitHub Pages ausgeliefert; ältere
-   Läufe liegen in `docs/archiv/`.
+   (Relevanz × Timing). Wird als `docs/index.html` ins Repo committet und von
+   GitHub Pages ausgeliefert.
 
-## Guthaben-Anzeige
+## Historie
 
-z.ai bietet keinen API-Endpoint für den Kontostand. Die Seite zeigt daher einen
-**geschätzten** Verbrauch: jeder Lauf rechnet Token- und Suchverbrauch zu
-z.ai-Listenpreisen (USD) hoch und schreibt die Summe in `docs/spend.json` fort,
-abgezogen vom Startguthaben (`START_BALANCE`, Standard 10). Der exakte Stand steht
-im [z.ai-Dashboard](https://z.ai/manage-apikey/billing) (dorthin verlinkt die Seite).
+Jeder Lauf legt einen Tages-Snapshot unter `docs/archiv/JJJJ-MM-TT.html` ab und
+schreibt `docs/archiv/history.json` fort. Die Übersichtsseite `docs/archiv/index.html`
+(verlinkt oben auf der Hauptseite) listet alle bisherigen Tage. Da alles ins Repo
+committet wird, **verfallen die Ergebnisse nicht** – die komplette Historie bleibt
+dauerhaft erhalten und ist über GitHub Pages abrufbar.
 
 ## Kosten
 
@@ -81,10 +80,9 @@ Optionale **Repo-Variablen** (Settings → Secrets and variables → Actions →
 
 | Variable         | Standard  | Zweck |
 |------------------|-----------|-------|
-| `START_BALANCE`  | `10`      | Startguthaben für die Anzeige |
-| `CURRENCY`       | `€`       | Währungssymbol der Anzeige |
 | `SEARCH_RECENCY` | `oneWeek` | Suchzeitraum (`oneDay`/`oneWeek`/`oneMonth`) |
 | `GLM_MODEL`      | `glm-5.2` | Modell |
+| `PM_ENDPOINT`    | –         | URL des Cloudflare Workers für die Live-Pressemitteilung |
 
 Weiteres:
 

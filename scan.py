@@ -42,13 +42,6 @@ RESULTS_PER_SOURCE = int(os.environ.get("RESULTS_PER_SOURCE", "6"))
 
 OUT_DIR = Path(os.environ.get("OUT_DIR", "docs"))
 
-# Preise (USD, z.ai Listenpreise GLM-5.2) für die Verbrauchsschätzung.
-PRICE_IN = float(os.environ.get("GLM_PRICE_IN", "1.40")) / 1_000_000    # pro Input-Token
-PRICE_OUT = float(os.environ.get("GLM_PRICE_OUT", "4.40")) / 1_000_000  # pro Output-Token
-SEARCH_COST = float(os.environ.get("SEARCH_COST", "0.01"))             # pro Web-Suche (Schätzwert)
-START_BALANCE = float(os.environ.get("START_BALANCE", "10"))          # Startguthaben
-CURRENCY = os.environ.get("CURRENCY", "€")
-
 # Quellen aus dem Workflow-Dokument: label · Domain-Filter · Bereich.
 SOURCES = [
     {"label": "EU-Kommission (Presscorner)", "domain": "ec.europa.eu",       "bereich": "Policy / Gesetzesinitiativen"},
@@ -226,8 +219,7 @@ def _extract_json(text: str) -> dict:
     return json.loads(text[start:end + 1])
 
 
-def evaluate(items: list[dict]) -> tuple[dict, dict]:
-    """Gibt (data, usage) zurück; usage = Token-Verbrauch der Auswertung."""
+def evaluate(items: list[dict]) -> dict:
     print("Schritt 2 – Auswerten (GLM-5.2):")
     funde = json.dumps(items, ensure_ascii=False, indent=2)
     user_prompt = USER_PROMPT_TEMPLATE.format(funde=funde, bereiche=RELEVANTE_BEREICHE)
@@ -243,46 +235,49 @@ def evaluate(items: list[dict]) -> tuple[dict, dict]:
     res = _post_with_retry(CHAT_URL, payload, timeout=180)
     content = res["choices"][0]["message"]["content"]
     data = _extract_json(content)
-    usage = res.get("usage", {}) or {}
-    print(f"  → {len(data.get('themen', []))} Themen ausgewertet "
-          f"(Tokens: {usage.get('prompt_tokens','?')} in / {usage.get('completion_tokens','?')} out)\n")
-    return data, usage
+    print(f"  → {len(data.get('themen', []))} Themen ausgewertet\n")
+    return data
 
 
 # --------------------------------------------------------------------------- #
-# Kosten-/Guthaben-Tracking
+# Historie / Archiv
 # --------------------------------------------------------------------------- #
 
-def update_spend(usage: dict, searches: int) -> dict:
-    """Kumulierten Verbrauch schätzen und in docs/spend.json fortschreiben."""
-    spend_file = OUT_DIR / "spend.json"
-    prev = {"spent_usd": 0.0, "runs": 0}
-    if spend_file.exists():
+REL_RANK = {"sehr hoch": 4, "hoch": 3, "mittel": 2, "niedrig": 1}
+
+
+def update_history(now: dt.datetime, data: dict) -> list[dict]:
+    """Tageseintrag in docs/archiv/history.json fortschreiben (persistente Historie)."""
+    archive_dir = OUT_DIR / "archiv"
+    archive_dir.mkdir(parents=True, exist_ok=True)
+    hist_file = archive_dir / "history.json"
+
+    history = []
+    if hist_file.exists():
         try:
-            prev = json.loads(spend_file.read_text(encoding="utf-8"))
+            history = json.loads(hist_file.read_text(encoding="utf-8"))
         except Exception:
-            pass
+            history = []
 
-    in_tok = usage.get("prompt_tokens", 0) or 0
-    out_tok = usage.get("completion_tokens", 0) or 0
-    run_cost = in_tok * PRICE_IN + out_tok * PRICE_OUT + searches * SEARCH_COST
-
-    spent = round(float(prev.get("spent_usd", 0.0)) + run_cost, 4)
-    state = {
-        "spent_usd": spent,
-        "runs": int(prev.get("runs", 0)) + 1,
-        "start_balance": START_BALANCE,
-        "currency": CURRENCY,
-        "remaining": round(START_BALANCE - spent, 4),
-        "last_run_usd": round(run_cost, 4),
-        "updated": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "note": "Geschätzt aus Token-/Suchverbrauch (z.ai bietet keinen Guthaben-Endpoint).",
+    themen = data.get("themen", [])
+    top = sorted(themen, key=lambda t: -REL_RANK.get(str(t.get("relevanz", "")).lower(), 0))
+    date_str = f"{now:%Y-%m-%d}"
+    entry = {
+        "date": date_str,
+        "kw": now.isocalendar()[1],
+        "count": len(themen),
+        "hoch": sum(1 for t in themen if REL_RANK.get(str(t.get("relevanz", "")).lower(), 0) >= 3),
+        "top_headline": (top[0].get("titel", "") if top else ""),
+        "top_relevanz": (top[0].get("relevanz", "") if top else ""),
+        "hinweis": data.get("hinweis", ""),
     }
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    spend_file.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Verbrauch dieser Lauf: ~${run_cost:.4f} · kumuliert: ~${spent:.2f} "
-          f"· Rest (geschätzt): ~{CURRENCY}{state['remaining']:.2f}\n")
-    return state
+    # heutigen Eintrag ersetzen (falls mehrmals am Tag), sonst anhängen
+    history = [h for h in history if h.get("date") != date_str]
+    history.append(entry)
+    history.sort(key=lambda h: h.get("date", ""), reverse=True)
+
+    hist_file.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
+    return history
 
 
 # --------------------------------------------------------------------------- #
@@ -297,35 +292,38 @@ def main() -> int:
     now = dt.datetime.now(dt.timezone.utc)
     items, searches = run_scan()
 
-    usage = {}
     if not items:
         data = {"hinweis": "Keine Fundstellen aus den Quellen erhalten (Suche leer oder fehlgeschlagen).",
                 "themen": []}
     else:
         try:
-            data, usage = evaluate(items)
+            data = evaluate(items)
         except Exception as e:
             print(f"FEHLER bei der Auswertung: {e}", file=sys.stderr)
             return 1
 
-    spend = update_spend(usage, searches)
+    from render import build_report, build_archive_index
 
-    from render import build_report
-    html = build_report(data, now, spend)
+    html = build_report(data, now)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / "index.html").write_text(html, encoding="utf-8")
 
+    # Tages-Snapshot ins Archiv (bleibt dauerhaft im Repo erhalten)
     archive_dir = OUT_DIR / "archiv"
     archive_dir.mkdir(exist_ok=True)
     (archive_dir / f"{now:%Y-%m-%d}.html").write_text(html, encoding="utf-8")
+
+    # Historie fortschreiben und Übersichtsseite neu bauen
+    history = update_history(now, data)
+    (archive_dir / "index.html").write_text(build_archive_index(history), encoding="utf-8")
 
     (OUT_DIR / "latest.json").write_text(
         json.dumps({"generated_at": now.isoformat(), **data}, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
 
-    print(f"Fertig. Geschrieben: {OUT_DIR/'index.html'}")
+    print(f"Fertig. {len(history)} Tage in der Historie. Geschrieben: {OUT_DIR/'index.html'}")
     return 0
 
 
