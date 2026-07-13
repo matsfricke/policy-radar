@@ -9,6 +9,7 @@ Themen-zentrierte, interaktive Website:
 """
 
 from __future__ import annotations
+import os
 import json
 import datetime as dt
 
@@ -172,6 +173,20 @@ def _chip(label: str, value: str, color: str = "") -> str:
     return f'<span class="chip"{style}><b>{_esc(label)}</b> {_esc(value)}</span>'
 
 
+def _bullets(value) -> str:
+    """Rendert ein Erfolgsformel-Feld als Stichpunktliste (akzeptiert Liste oder String)."""
+    if isinstance(value, (list, tuple)):
+        items = [str(x).strip() for x in value if str(x).strip()]
+    else:
+        items = [s.strip() for s in str(value or "").replace("•", "\n").split("\n") if s.strip()]
+    if not items:
+        return ""
+    if len(items) == 1:
+        return f"<p>{_esc(items[0])}</p>"
+    lis = "".join(f"<li>{_esc(it)}</li>" for it in items)
+    return f"<ul>{lis}</ul>"
+
+
 def _topic_card(idx: int, t: dict) -> str:
     rel = _norm(t.get("relevanz"))
     rel_color = REL_COLOR.get(rel, "#8a8f98")
@@ -199,14 +214,18 @@ def _topic_card(idx: int, t: dict) -> str:
       </div>
       <h3 class="topic-title">{_esc(t.get("titel"))}</h3>
       <div class="topic-meta">{quelle}{(' · ' + _esc(t.get('timing_text'))) if t.get('timing_text') else ''}</div>
-      <p class="topic-reason">{_esc(t.get("relevanz_begruendung"))}</p>
+      <p class="topic-summary">{_esc(t.get("zusammenfassung") or t.get("kernaussage"))}</p>
+      {f'<p class="topic-reason"><b>Warum relevant:</b> {_esc(t.get("relevanz_begruendung"))}</p>' if t.get("relevanz_begruendung") else ''}
       {ueberschrift_html}
-      <p class="kernaussage">{_esc(t.get("kernaussage"))}</p>
       <div class="formel">
-        <div class="f-step"><span class="f-label">Entwicklung</span><p>{_esc(t.get("was_aendert_sich"))}</p></div>
-        <div class="f-step"><span class="f-label">Auswirkung</span><p>{_esc(t.get("wer_betroffen"))}</p></div>
-        <div class="f-step"><span class="f-label">Handlung</span><p>{_esc(t.get("was_tun"))}</p></div>
-        <div class="f-step tuev"><span class="f-label">TÜV NORD Lösung</span><p>{_esc(t.get("wo_tuev_nord_hilft"))}</p></div>
+        <div class="f-step"><span class="f-label">Entwicklung</span>{_bullets(t.get("was_aendert_sich"))}</div>
+        <div class="f-step"><span class="f-label">Auswirkung</span>{_bullets(t.get("wer_betroffen"))}</div>
+        <div class="f-step"><span class="f-label">Handlung</span>{_bullets(t.get("was_tun"))}</div>
+        <div class="f-step tuev"><span class="f-label">TÜV NORD Lösung</span>{_bullets(t.get("wo_tuev_nord_hilft"))}</div>
+      </div>
+      <div class="pm-zone">
+        <button class="pm-btn" data-i="{idx}">✍️ Pressemitteilung live schreiben</button>
+        <div class="pm-out" id="pm-out-{idx}" hidden></div>
       </div>
     </article>"""
 
@@ -231,6 +250,19 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
         "relevanz": t.get("relevanz", ""), "timing": t.get("timing_bucket", ""),
         "pr": t.get("pr_potenzial", ""),
     } for t in themen]
+
+    # Vollständige Themendaten für die Live-Pressemitteilung (an das Backend gesendet)
+    pm_data = [{
+        "titel": t.get("titel", ""), "source": t.get("source", ""), "date": t.get("date", ""),
+        "url": t.get("url", ""), "bereich": t.get("bereich", ""),
+        "zusammenfassung": t.get("zusammenfassung", "") or t.get("kernaussage", ""),
+        "vorschlag_ueberschrift": t.get("vorschlag_ueberschrift", ""),
+        "was_aendert_sich": t.get("was_aendert_sich", ""), "wer_betroffen": t.get("wer_betroffen", ""),
+        "was_tun": t.get("was_tun", ""), "wo_tuev_nord_hilft": t.get("wo_tuev_nord_hilft", ""),
+    } for t in themen]
+
+    # Backend-URL für die Live-Pressemitteilung (leer = Feature erklärt sich als inaktiv)
+    pm_endpoint = json.dumps(os.environ.get("PM_ENDPOINT", "").strip())
 
     return f"""<!DOCTYPE html>
 <html lang="de">
@@ -304,9 +336,11 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
   .chip[style*="--c"] b {{ color:var(--c); }}
   .chip.bereich {{ background:var(--c); border-color:var(--c); color:#fff; font-weight:700; }}
   .topic-title {{ font-size:19px; line-height:1.25; margin:2px 0 4px; color:var(--dark); }}
-  .topic-meta {{ font-size:13px; color:var(--muted); margin-bottom:6px; }}
+  .topic-meta {{ font-size:13px; color:var(--muted); margin-bottom:8px; }}
   .topic-meta a {{ color:var(--teal); }}
-  .topic-reason {{ font-size:14.5px; margin:0 0 10px; }}
+  .topic-summary {{ font-size:15px; margin:0 0 10px; }}
+  .topic-reason {{ font-size:14px; color:var(--muted); margin:0 0 12px; }}
+  .topic-reason b {{ color:var(--dark); }}
 
   .headline-box {{ background:linear-gradient(0deg,rgba(0,139,139,.08),rgba(0,139,139,.08)); border:1px dashed var(--teal);
                    border-radius:8px; padding:10px 14px; margin:0 0 12px; }}
@@ -319,8 +353,24 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
   @media (max-width:560px) {{ .formel {{ grid-template-columns:1fr; }} }}
   .f-step {{ background:var(--soft); padding:11px 14px; }}
   .f-step.tuev {{ background:rgba(0,139,139,.08); }}
-  .f-label {{ display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--teal); font-weight:700; margin-bottom:4px; }}
+  .f-label {{ display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--teal); font-weight:700; margin-bottom:5px; }}
   .f-step p {{ margin:0; font-size:14px; }}
+  .f-step ul {{ margin:0; padding-left:17px; }}
+  .f-step li {{ font-size:14px; margin-bottom:4px; }}
+
+  /* Live-Pressemitteilung */
+  .pm-zone {{ margin-top:14px; }}
+  .pm-btn {{ font:inherit; font-size:14px; font-weight:700; color:#fff; background:var(--teal);
+             border:none; border-radius:8px; padding:9px 16px; cursor:pointer; transition:opacity .15s; }}
+  .pm-btn:hover {{ opacity:.88; }}
+  .pm-btn:disabled {{ opacity:.6; cursor:default; }}
+  .pm-out {{ margin-top:12px; padding:16px 18px; border:1px solid var(--border);
+             border-left:4px solid var(--teal); border-radius:8px; background:var(--soft);
+             font-size:14.5px; line-height:1.6; white-space:pre-wrap; }}
+  .pm-out.err {{ border-left-color:#c0392b; color:#c0392b; white-space:normal; }}
+  .pm-tools {{ margin-top:10px; display:flex; gap:8px; }}
+  .pm-tools button {{ font:inherit; font-size:12.5px; border:1px solid var(--border);
+                      background:var(--card); color:var(--muted); border-radius:6px; padding:4px 10px; cursor:pointer; }}
 
   a {{ color:var(--teal); }}
   footer {{ margin-top:44px; padding-top:16px; border-top:1px solid var(--border); font-size:12.5px; color:var(--muted); }}
@@ -379,6 +429,44 @@ def build_report(data: dict, generated_at: dt.datetime, spend: dict | None = Non
     }}
     c.addEventListener('click', go);
     c.addEventListener('keydown', function(e) {{ if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); go(); }} }});
+  }});
+
+  // --- Live-Pressemitteilung ---
+  // Backend-Endpoint (hält den GLM-Key geheim). Wird beim Setup gesetzt.
+  var PM_ENDPOINT = {pm_endpoint};
+  var PM = {json.dumps(pm_data, ensure_ascii=False)};
+
+  document.querySelectorAll('.pm-btn').forEach(function(btn) {{
+    btn.addEventListener('click', function() {{
+      var i = +btn.getAttribute('data-i');
+      var out = document.getElementById('pm-out-' + i);
+      out.hidden = false; out.className = 'pm-out';
+      if (!PM_ENDPOINT) {{
+        out.className = 'pm-out err';
+        out.textContent = 'Live-Generierung ist noch nicht aktiviert: Es fehlt der Backend-Endpoint '
+          + '(hält den GLM-Key geheim). Sobald das Backend steht, wird hier die Pressemitteilung live geschrieben.';
+        return;
+      }}
+      btn.disabled = true; var old = btn.textContent; btn.textContent = '⏳ schreibe …';
+      out.textContent = 'GLM-5.2 schreibt die Pressemitteilung …';
+      fetch(PM_ENDPOINT, {{
+        method: 'POST', headers: {{'Content-Type': 'application/json'}},
+        body: JSON.stringify({{topic: PM[i]}})
+      }})
+      .then(function(r) {{ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }})
+      .then(function(d) {{
+        out.textContent = d.text || '(leere Antwort)';
+        var tools = document.createElement('div'); tools.className = 'pm-tools';
+        var cp = document.createElement('button'); cp.textContent = '📋 Kopieren';
+        cp.onclick = function() {{ navigator.clipboard.writeText(out.textContent.replace(/\\n?📋.*$/,'')); cp.textContent = '✓ kopiert'; }};
+        tools.appendChild(cp); out.appendChild(tools);
+      }})
+      .catch(function(e) {{
+        out.className = 'pm-out err';
+        out.textContent = 'Fehler bei der Live-Generierung: ' + e.message;
+      }})
+      .finally(function() {{ btn.disabled = false; btn.textContent = old; }});
+    }});
   }});
 </script>
 </body>

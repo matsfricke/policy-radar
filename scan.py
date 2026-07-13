@@ -174,11 +174,15 @@ Erfinde nichts; wenn nichts wirklich relevant ist, gib ein leeres Array zurück.
 
 Relevante Bereiche: {bereiche}.
 
-Erzeuge für JEDES ausgewählte Thema EINEN kombinierten Eintrag, der Bewertung und
-PR-Winkel zusammenführt (Erfolgsformel: Entwicklung → Auswirkung → Handlung →
+Erzeuge für JEDES ausgewählte Thema EINEN kombinierten Eintrag, der Fund, Bewertung
+und PR-Winkel zusammenführt (Erfolgsformel: Entwicklung → Auswirkung → Handlung →
 TÜV NORD Lösung). Bei Relevanz "hoch" oder "sehr hoch" schlägst du zusätzlich eine
 starke Presse-Überschrift vor (konkret, im "Was jetzt zu tun ist"-Stil, kein
 "EU arbeitet an ..."). Bei "mittel"/"niedrig" lässt du "vorschlag_ueberschrift" leer.
+
+Die vier Erfolgsformel-Felder (was_aendert_sich, wer_betroffen, was_tun,
+wo_tuev_nord_hilft) sind JEWEILS eine Liste aus 2–4 kurzen, konkreten Stichpunkten
+(je 1 knapper Satz) – nur das, was für dieses Thema wirklich relevant ist.
 
 Sortiere die Themen absteigend nach Relevanz (sehr hoch zuerst).
 
@@ -193,16 +197,17 @@ Antworte GENAU in diesem JSON-Schema:
       "url": "Link zur Quelle",
       "bereich": "einer von: Zertifizierung | ESG | MedTech | Food | KRITIS | Sonstiges",
       "relevanz": "einer von: sehr hoch | hoch | mittel | niedrig",
-      "relevanz_begruendung": "1 Satz: warum (betrifft es Kunden konkret?)",
+      "relevanz_begruendung": "1 Satz: warum es TÜV-NORD-Kunden konkret betrifft",
       "timing_bucket": "einer von: jetzt | 6-12 Monate | 1-3 Jahre | >3 Jahre",
       "timing_text": "1 kurzer Satz zur zeitlichen Einordnung",
       "pr_potenzial": "einer von: hoch | mittel | niedrig",
+      "zusammenfassung": "ca. 4 Sätze: worum geht es konkret, was genau ist neu/der Inhalt der Meldung, welcher Kontext, warum ist das gerade jetzt ein Thema",
       "vorschlag_ueberschrift": "starke Presse-Überschrift (nur bei hoch/sehr hoch, sonst leerer String)",
       "kernaussage": "eine prägnante Kernaussage",
-      "was_aendert_sich": "Was passiert gerade?",
-      "wer_betroffen": "Wer ist betroffen?",
-      "was_tun": "Was müssen Unternehmen jetzt tun?",
-      "wo_tuev_nord_hilft": "Wie kann TÜV NORD mit Dienstleistungen/Expertise helfen?"
+      "was_aendert_sich": ["Stichpunkt", "Stichpunkt", "..."],
+      "wer_betroffen": ["Stichpunkt", "..."],
+      "was_tun": ["Stichpunkt", "..."],
+      "wo_tuev_nord_hilft": ["Stichpunkt", "..."]
     }}
   ]
 }}
