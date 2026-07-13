@@ -89,8 +89,11 @@ def _post_with_retry(url: str, payload: dict, timeout: int = 120, tries: int = 3
             last_err = f"HTTP {e.code}: {body}"
             if e.code != 429 and 400 <= e.code < 500:
                 break
-        except URLError as e:
-            last_err = f"URLError: {e.reason}"
+        except (URLError, TimeoutError, OSError) as e:
+            # Timeout, Verbindungsabbruch, DNS etc. – erneut versuchen
+            last_err = f"{type(e).__name__}: {e}"
+        except Exception as e:
+            last_err = f"{type(e).__name__}: {e}"
         time.sleep(2 * attempt)
     raise RuntimeError(f"Request an {url} fehlgeschlagen: {last_err}")
 
@@ -108,7 +111,7 @@ def scan_source(source: dict) -> tuple[list[dict], bool]:
         "search_domain_filter": source["domain"],
     }
     try:
-        res = _post_with_retry(SEARCH_URL, payload, timeout=60)
+        res = _post_with_retry(SEARCH_URL, payload, timeout=90)
     except RuntimeError as e:
         print(f"  ! {source['label']}: Suche fehlgeschlagen – {e}", file=sys.stderr)
         return [], False
