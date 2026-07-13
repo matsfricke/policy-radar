@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-07-13T09:46:10.977686+00:00",
+  "hinweis": "2 relevante Themen identifiziert, davon 0 mit hoher Relevanz. Die meisten Fundstellen betreffen EU-Wettbewerbsrecht und Fusionskontrolle, die für TÜV-NORD-Kernbereiche wenig relevant sind.",
+  "themen": [
+    {
+      "titel": "KI-Definition als entscheidender Hebel der EU-KI-Verordnung – Wirtschaft fordert Präzisierung",
+      "source": "OECD",
+      "date": "",
+      "url": "https://www.gdv.de/resource/blob/178916/d777c5e3384119d263f6a83781b63c98/positionspapier-ki-data.pdf",
+      "bereich": "Zertifizierung",
+      "relevanz": "mittel",
+      "relevanz_begruendung": "Die KI-Definition bestimmt, welche Systeme künftig zertifizierungspflichtig werden – direkt relevant für TÜV NORDs wachsendes AI-Assurance-Geschäft.",
+      "timing_bucket": "6-12 Monate",
+      "timing_text": "Die EU-KI-Verordnung tritt schrittweise ab 2026 in Kraft; die Definition ist jetzt entscheidend für die Vorbereitung.",
+      "pr_potenzial": "mittel",
+      "zusammenfassung": "In einem Positionspapier weist die deutsche Wirtschaft darauf hin, dass die KI-Definition im EU-KI-Act den Anwendungsbereich der künftigen Regulierung maßgeblich bestimmt. Eine zu weite Definition könnte unverhältnismäßige Anforderungen an Unternehmen stellen, eine zu enge Lücken lassen. Für Prüf- und Zertifizierungsorganisationen ist die genaue Abgrenzung zentral, da sie festlegt, welche Systeme einer Konformitätsbewertung unterliegen. Das Thema gewinnt an Dringlichkeit, da die Umsetzungsfristen der KI-Verordnung näher rücken.",
+      "vorschlag_ueberschrift": "",
+      "kernaussage": "Die präzise Definition von KI im EU-Recht entscheidet darüber, welche Systeme zertifiziert werden müssen – Unternehmen müssen jetzt Klarheit für ihre Compliance-Strategie schaffen.",
+      "was_aendert_sich": [
+        "Die EU-KI-Verordnung legt fest, welche KI-Systeme einer Konformitätsbewertung unterliegen",
+        "Der Anwendungsbereich hängt maßgeblich von der zugrundegelegten KI-Definition ab"
+      ],
+      "wer_betroffen": [
+        "Entwickler und Betreiber von KI-Systemen in der EU",
+        "Prüf- und Zertifizierungsstellen, die Konformitätsbewertungen durchführen"
+      ],
+      "was_tun": [
+        "Bestandsaufnahme eigener KI-Systeme gegen die KI-Act-Definition vornehmen",
+        "Risikoklassifizierung der eingesetzten KI-Systeme durchführen"
+      ],
+      "wo_tuev_nord_hilft": [
+        "Konformitätsbewertung und Zertifizierung von KI-Systemen nach EU-KI-Verordnung",
+        "Beratung zur Risikoklassifizierung und Compliance-Strategie"
+      ]
+    },
+    {
+      "titel": "BDA-Positionspapier: EU-Rechtsetzung reformieren – weniger Belastungen, mehr Verhältnismäßigkeit",
+      "source": "EU-Kommission (Presscorner)",
+      "date": "2026年2月3日",
+      "url": "https://arbeitgeber.de/wp-content/uploads/bda-arbeitgeber-positionspapier-EU_Rechtsetzung_reformieren_bessere_Prozesse_weniger_Belastungen-2026_02.pdf",
+      "bereich": "Sonstiges",
+      "relevanz": "niedrig",
+      "relevanz_begruendung": "Die geforderte Verhältnismäßigkeit neuer Rechtsakte könnte künftige Zertifizierungspflichten beeinflussen, ist aber zu allgemein für konkrete TÜV-NORD-Aussagen.",
+      "timing_bucket": "1-3 Jahre",
+      "timing_text": "Die Forderungen zielen auf die EU-Legislaturperiode 2024 bis 2029 ab; konkrete Reformen sind mittelfristig zu erwarten.",
+      "pr_potenzial": "niedrig",
+      "zusammenfassung": "Die BDA fordert in einem Positionspapier, dass neue EU-Rechtsakte künftig nur noch vorgeschlagen werden sollen, wenn sie verhältnismäßig und notwendig sind. Die Richtlinien über bessere Rechtsetzung sollen gestärkt werden, um Bürokratie und Belastungen für Unternehmen zu reduzieren. Dies betrifft auch den Bereich der Zertifizierung und Normung, wo unverhältnismäßige Anforderungen die Wirtschaft belasten können. Das Papier richtet sich an die EU-Institutionen für die laufende Legislaturperiode.",
+      "vorschlag_ueberschrift": "",
+      "kernaussage": "Die BDA fordert Verhältnismäßigkeit bei neuen EU-Rechtsakten – auch Zertifizierungspflichten könnten künftig stärker auf Notwendigkeit geprüft werden.",
+      "was_aendert_sich": [
+        "Neue EU-Rechtsakte sollen künftig auf Verhältnismäßigkeit und Notwendigkeit geprüft werden",
+        "Bürokratieabbau und Entlastung der Wirtschaft werden politisch höher gewichtet"
+      ],
+      "wer_betroffen": [
+        "Unternehmen, die unter EU-Regulierung und Zertifizierungspflichten fallen",
+        "Normungsgremien und Standardisierungsorganisationen"
+      ],
+      "was_tun": [
+        "Bestehende Zertifizierungspflichten auf Verhältnismäßigkeit prüfen",
+        "Position in EU-Konsultationen zu neuen Rechtsakten einbringen"
+      ],
+      "wo_tuev_nord_hilft": [
+        "Effizienzprüfung bestehender Compliance- und Zertifizierungsprozesse",
+        "Unterstützung bei der Einordnung neuer regulatorischer Anforderungen"
+      ]
+    }
+  ]
+}
