@@ -2,7 +2,8 @@
 """
 Policy Scanning Routine – automatisierter Tageslauf.
 
-Setzt den "30-Minuten-Wochenworkflow" von Svea Fricke (TÜV NORD) automatisch um.
+Setzt den "30-Minuten-Wochenworkflow" (Policy Scanning) für die TÜV-NORD-
+Pressearbeit automatisch um.
 Pro Thema werden alle Workflow-Schritte kombiniert (Was ist neu? · Bewertung ·
 PR-Winkel), damit auf der Website ohne Scrollen sichtbar ist, was relevant ist.
 
