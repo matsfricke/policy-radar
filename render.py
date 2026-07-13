@@ -1,10 +1,11 @@
 """HTML-Ausgabe für die Policy Scanning Routine.
 
 Themen-zentrierte, interaktive Website:
-  - interaktiver Policy-Radar (Relevanz × Timing, Blasengröße = PR-Potenzial)
   - je Thema EINE Karte, die Fund, Bewertung und PR-Winkel kombiniert
     (kein Scrollen zwischen Schritten); bei hoher Relevanz mit
     vorgeschlagener Presse-Überschrift.
+  - pro Thema optional ein von GLM geliefertes Statistik-Diagramm (bar/line).
+  - Live-Pressemitteilung pro Thema (Button gegen Backend-Endpoint).
   - Historie: build_archive_index() rendert die Übersicht vergangener Tage.
 """
 
@@ -23,13 +24,7 @@ MONATE = ["", "Januar", "Februar", "März", "April", "Mai", "Juni",
 REL_SCORE = {"sehr hoch": 4, "hoch": 3, "mittel": 2, "niedrig": 1}
 REL_COLOR = {"sehr hoch": "#c0392b", "hoch": "#e67e22", "mittel": "#008b8b", "niedrig": "#8a8f98"}
 
-# Timing-Bucket → x-Position (0 = jetzt … 3 = spät)
-TIMING_X = {"jetzt": 0, "6-12 monate": 1, "6–12 monate": 1, "1-3 jahre": 2, "1–3 jahre": 2, ">3 jahre": 3}
-TIMING_LABELS = ["jetzt", "6–12 Mon.", "1–3 Jahre", ">3 Jahre"]
-
-PR_RADIUS = {"hoch": 13, "mittel": 9, "niedrig": 6}
-
-# Bereich → Farbe (für den Radar-Chart)
+# Bereich → Farbe (für die Bereichs-Chips)
 BEREICH_COLOR = {
     "Zertifizierung": "#008b8b", "ESG": "#2e8b57", "MedTech": "#6a5acd",
     "Food": "#d97706", "KRITIS": "#c0392b", "Sonstiges": "#8a8f98",
@@ -63,77 +58,87 @@ def _sort_key(t: dict):
 
 
 # --------------------------------------------------------------------------- #
-# Radar-Chart (SVG, serverseitig positioniert + JS-Tooltip/Klick)
+# Themen-Chart (von GLM gelieferte Statistik, als SVG gerendert)
 # --------------------------------------------------------------------------- #
 
-def _radar_chart(themen: list[dict]) -> str:
-    if not themen:
+def _isnum(x) -> bool:
+    try:
+        float(x)
+        return True
+    except (TypeError, ValueError):
+        return False
+
+
+def _topic_chart(chart) -> str:
+    """Rendert ein von GLM geliefertes Statistik-Diagramm (bar/line) als SVG.
+    Zeigt nur etwas an, wenn mindestens 2 echte Zahlenwerte vorliegen."""
+    if not isinstance(chart, dict):
         return ""
-    L, R, T, B = 64, 700, 24, 300
-    innerW, innerH = R - L, B - T
+    data = [d for d in (chart.get("data") or [])
+            if isinstance(d, dict) and _isnum(d.get("value"))]
+    if len(data) < 2:
+        return ""
+    data = data[:8]
+    ctype = _norm(chart.get("type")) or "bar"
+    title = chart.get("title", "")
+    unit = chart.get("unit", "")
+    quelle = chart.get("quelle", "")
+    labels = [str(d.get("label", "")) for d in data]
+    values = [float(d["value"]) for d in data]
 
-    def x_of(i):  # i = timing index 0..3
-        return L + (i + 0.5) * (innerW / 4)
+    W, H = 640, 220
+    L, R, T, B = 44, 16, 16, 46
+    plotW, plotH = W - L - R, H - T - B
+    vmax = max(values + [0.0])
+    vmin = min(values + [0.0])
+    span = (vmax - vmin) or 1.0
 
-    def y_of(score):  # score 1..4 (4 oben)
-        return T + (4 - score) / 3 * (innerH - 30) + 15
+    def y_of(v):
+        return T + plotH * (1 - (v - vmin) / span)
 
-    # Gitter + Achsenbeschriftung
-    grid = []
-    for i, lab in enumerate(TIMING_LABELS):
-        gx = x_of(i)
-        grid.append(f'<line x1="{gx:.0f}" y1="{T}" x2="{gx:.0f}" y2="{B}" class="grid"/>')
-        grid.append(f'<text x="{gx:.0f}" y="{B+18}" class="axlab" text-anchor="middle">{lab}</text>')
-    for score, lab in [(4, "sehr hoch"), (3, "hoch"), (2, "mittel"), (1, "niedrig")]:
-        gy = y_of(score)
-        grid.append(f'<line x1="{L}" y1="{gy:.0f}" x2="{R}" y2="{gy:.0f}" class="grid"/>')
-        grid.append(f'<text x="{L-8}" y="{gy+4:.0f}" class="axlab" text-anchor="end">{lab}</text>')
+    zero_y = y_of(0)
+    grid = f'<line x1="{L}" y1="{zero_y:.1f}" x2="{W-R}" y2="{zero_y:.1f}" class="c-axis"/>'
 
-    # Blasen (mit leichtem Jitter bei Kollision in derselben Zelle)
-    cell_count: dict = {}
-    bubbles = []
-    for idx, t in enumerate(themen):
-        rel = _norm(t.get("relevanz"))
-        score = REL_SCORE.get(rel, 1)
-        ti = TIMING_X.get(_norm(t.get("timing_bucket")), 2)
-        key = (ti, score)
-        n = cell_count.get(key, 0)
-        cell_count[key] = n + 1
-        jitter = (n % 3 - 1) * 16
-        cx = x_of(ti) + jitter
-        cy = y_of(score) + (n // 3) * 16
-        r = PR_RADIUS.get(_norm(t.get("pr_potenzial")), 8)
-        color = BEREICH_COLOR.get(t.get("bereich"), "#8a8f98")
-        bubbles.append(
-            f'<circle class="bub" cx="{cx:.0f}" cy="{cy:.0f}" r="{r}" '
-            f'fill="{color}" data-i="{idx}" tabindex="0"/>'
-        )
+    def fmt(v):
+        return (f"{v:.0f}" if abs(v) >= 10 or v == int(v) else f"{v:.1f}") + (f" {unit}" if unit else "")
 
-    # Legende Bereiche
-    used_bereiche = []
-    for t in themen:
-        b = t.get("bereich") or "Sonstiges"
-        if b not in used_bereiche:
-            used_bereiche.append(b)
-    legend = "".join(
-        f'<span class="lg"><span class="dot" style="background:{BEREICH_COLOR.get(b,"#8a8f98")}"></span>{_esc(b)}</span>'
-        for b in used_bereiche
+    n = len(data)
+    step = plotW / n
+    marks = []
+    if ctype == "line":
+        pts = []
+        for i, v in enumerate(values):
+            x = L + step * (i + 0.5)
+            y = y_of(v)
+            pts.append(f"{x:.1f},{y:.1f}")
+            marks.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.5" class="c-dot"/>')
+            marks.append(f'<text x="{x:.1f}" y="{y-8:.1f}" class="c-val" text-anchor="middle">{_esc(fmt(v))}</text>')
+        marks.insert(0, f'<polyline points="{" ".join(pts)}" class="c-line"/>')
+    else:  # bar
+        bw = step * 0.6
+        for i, v in enumerate(values):
+            x = L + step * i + (step - bw) / 2
+            y = y_of(v)
+            h = abs(y - zero_y)
+            top = min(y, zero_y)
+            marks.append(f'<rect x="{x:.1f}" y="{top:.1f}" width="{bw:.1f}" height="{h:.1f}" rx="3" class="c-bar"/>')
+            marks.append(f'<text x="{x+bw/2:.1f}" y="{top-6:.1f}" class="c-val" text-anchor="middle">{_esc(fmt(v))}</text>')
+
+    xlabels = "".join(
+        f'<text x="{L + step*(i+0.5):.1f}" y="{H-26:.1f}" class="c-lab" text-anchor="middle">{_esc(lab[:22])}</text>'
+        for i, lab in enumerate(labels)
     )
+    src = f'<div class="c-src">Quelle: {_esc(quelle)}</div>' if quelle else ""
 
     return f"""
-    <div class="chart-card">
-      <div class="chart-title">Policy-Radar <span class="chart-hint">Relevanz × Timing · Blasengröße = PR-Potenzial · Klick springt zum Thema</span></div>
-      <div class="chart-wrap">
-        <svg viewBox="0 0 720 330" class="radar" role="img" aria-label="Policy-Radar">
-          <text x="{L}" y="14" class="axtitle">▲ Relevanz</text>
-          <text x="{R}" y="{B+18}" class="axtitle" text-anchor="end">Timing ▶</text>
-          {''.join(grid)}
-          {''.join(bubbles)}
+      <figure class="topic-chart">
+        {f'<figcaption>{_esc(title)}</figcaption>' if title else ''}
+        <svg viewBox="0 0 {W} {H}" role="img" aria-label="{_esc(title) or 'Diagramm'}">
+          {grid}{''.join(marks)}{xlabels}
         </svg>
-      </div>
-      <div class="legend">{legend}</div>
-      <div id="tip" class="tip" hidden></div>
-    </div>"""
+        <div class="c-note">📊 Werte von GLM-5.2 aus den Quellen zusammengestellt – vor Veröffentlichung prüfen.</div>
+        {src}
+      </figure>"""
 
 
 # --------------------------------------------------------------------------- #
@@ -187,6 +192,7 @@ def _topic_card(idx: int, t: dict) -> str:
       <h3 class="topic-title">{_esc(t.get("titel"))}</h3>
       <div class="topic-meta">{quelle}{(' · ' + _esc(t.get('timing_text'))) if t.get('timing_text') else ''}</div>
       <p class="topic-summary">{_esc(t.get("zusammenfassung") or t.get("kernaussage"))}</p>
+      {_topic_chart(t.get("chart"))}
       {f'<p class="topic-reason"><b>Warum relevant:</b> {_esc(t.get("relevanz_begruendung"))}</p>' if t.get("relevanz_begruendung") else ''}
       {ueberschrift_html}
       <div class="formel">
@@ -215,13 +221,6 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
     themen = sorted(data.get("themen", []), key=_sort_key)
     cards = "".join(_topic_card(i, t) for i, t in enumerate(themen)) or \
         '<p class="empty">Heute keine relevanten neuen Themen erfasst.</p>'
-
-    # Chart-Tooltipdaten für JS
-    tip_data = [{
-        "titel": t.get("titel", ""), "bereich": t.get("bereich", ""),
-        "relevanz": t.get("relevanz", ""), "timing": t.get("timing_bucket", ""),
-        "pr": t.get("pr_potenzial", ""),
-    } for t in themen]
 
     # Vollständige Themendaten für die Live-Pressemitteilung (an das Backend gesendet)
     pm_data = [{
@@ -269,32 +268,13 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
                border:1px solid var(--border); border-radius:8px; padding:7px 14px; text-decoration:none; background:var(--card); }}
   .topnav a:hover {{ border-color:var(--teal); }}
 
-  /* Chart */
-  .chart-card {{ background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px 10px; margin:14px 0 8px; position:relative; }}
-  .chart-title {{ font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px; }}
-  .chart-hint {{ font-size:12px; font-weight:400; color:var(--muted); }}
-  .chart-wrap {{ overflow-x:auto; }}
-  .radar {{ width:100%; min-width:480px; height:auto; display:block; }}
-  .radar .grid {{ stroke:var(--border); stroke-width:1; }}
-  .radar .axlab {{ fill:var(--muted); font-size:11px; }}
-  .radar .axtitle {{ fill:var(--teal); font-size:11px; font-weight:700; }}
-  .radar .bub {{ opacity:.82; cursor:pointer; stroke:var(--card); stroke-width:1.5; transition:opacity .15s; outline:none; }}
-  .radar .bub:hover, .radar .bub:focus {{ opacity:1; stroke:var(--dark); stroke-width:2; }}
-  .legend {{ display:flex; flex-wrap:wrap; gap:12px; margin-top:4px; font-size:12px; color:var(--muted); }}
-  .lg {{ display:inline-flex; align-items:center; gap:5px; }}
-  .dot {{ width:10px; height:10px; border-radius:50%; display:inline-block; }}
-  .tip {{ position:fixed; z-index:20; background:var(--dark); color:#fff; padding:8px 11px; border-radius:7px; font-size:12.5px; max-width:260px; pointer-events:none; box-shadow:0 4px 16px rgba(0,0,0,.25); }}
-  .tip b {{ display:block; margin-bottom:3px; }}
-
-  h2.sec {{ font-size:20px; color:var(--dark); margin:30px 0 4px; padding-bottom:6px; border-bottom:2px solid var(--teal); }}
+  h2.sec {{ font-size:20px; color:var(--dark); margin:26px 0 4px; padding-bottom:6px; border-bottom:2px solid var(--teal); }}
   .sec-sub {{ color:var(--muted); font-size:14px; margin:0 0 14px; }}
   .empty {{ color:var(--muted); font-style:italic; }}
 
   /* Themen-Karten */
   .topic {{ background:var(--card); border:1px solid var(--border); border-left:5px solid var(--rel);
             border-radius:10px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:16px; }}
-  .topic.flash {{ animation:flash 1.2s ease; }}
-  @keyframes flash {{ 0%,100%{{background:var(--card);}} 25%{{background:rgba(0,139,139,.10);}} }}
   .topic-top {{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }}
   .chip {{ font-size:12px; border:1px solid var(--border); border-radius:20px; padding:2px 10px; color:var(--muted); background:var(--soft); }}
   .chip b {{ color:var(--dark); font-weight:700; }}
@@ -307,6 +287,20 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
   .topic-summary {{ font-size:15px; margin:0 0 10px; }}
   .topic-reason {{ font-size:14px; color:var(--muted); margin:0 0 12px; }}
   .topic-reason b {{ color:var(--dark); }}
+
+  /* Themen-Chart (von GLM erzeugte Statistik) */
+  .topic-chart {{ margin:2px 0 14px; padding:12px 14px 8px; border:1px solid var(--border);
+                  border-radius:8px; background:var(--soft); overflow-x:auto; }}
+  .topic-chart figcaption {{ font-size:13.5px; font-weight:700; color:var(--dark); margin-bottom:6px; }}
+  .topic-chart svg {{ width:100%; min-width:340px; height:auto; display:block; }}
+  .topic-chart .c-axis {{ stroke:var(--border); stroke-width:1; }}
+  .topic-chart .c-bar {{ fill:var(--teal); }}
+  .topic-chart .c-line {{ fill:none; stroke:var(--teal); stroke-width:2.5; }}
+  .topic-chart .c-dot {{ fill:var(--teal); }}
+  .topic-chart .c-val {{ fill:var(--dark); font-size:11px; font-weight:700; }}
+  .topic-chart .c-lab {{ fill:var(--muted); font-size:11px; }}
+  .topic-chart .c-note {{ font-size:11.5px; color:var(--muted); margin-top:4px; }}
+  .topic-chart .c-src {{ font-size:11.5px; color:var(--muted); margin-top:2px; }}
 
   .headline-box {{ background:linear-gradient(0deg,rgba(0,139,139,.08),rgba(0,139,139,.08)); border:1px dashed var(--teal);
                    border-radius:8px; padding:10px 14px; margin:0 0 12px; }}
@@ -353,8 +347,6 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
     <nav class="topnav"><a href="archiv/">🗂 Historie – frühere Tage ansehen</a></nav>
   </header>
 
-  {_radar_chart(themen)}
-
   <h2 class="sec">Themen</h2>
   <p class="sec-sub">Nach Relevanz sortiert. Jede Karte kombiniert Fund, Bewertung und PR-Winkel (Erfolgsformel).</p>
   {cards}
@@ -367,36 +359,6 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
 </div>
 
 <script>
-  var TIP = {json.dumps(tip_data, ensure_ascii=False)};
-  var tip = document.getElementById('tip');
-  function showTip(e, i) {{
-    var d = TIP[i]; if (!d) return;
-    tip.innerHTML = '<b>' + d.titel + '</b>' +
-      d.bereich + ' · Relevanz: ' + d.relevanz + ' · Timing: ' + d.timing + ' · PR: ' + d.pr;
-    tip.hidden = false;
-    var x = (e.clientX || 0) + 14, y = (e.clientY || 0) + 14;
-    if (x > window.innerWidth - 280) x = window.innerWidth - 280;
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
-  }}
-  function hideTip() {{ tip.hidden = true; }}
-  document.querySelectorAll('.radar .bub').forEach(function(c) {{
-    var i = +c.getAttribute('data-i');
-    c.addEventListener('mousemove', function(e) {{ showTip(e, i); }});
-    c.addEventListener('mouseleave', hideTip);
-    c.addEventListener('focus', function(e) {{
-      var r = c.getBoundingClientRect();
-      showTip({{clientX: r.left, clientY: r.top}}, i);
-    }});
-    c.addEventListener('blur', hideTip);
-    function go() {{
-      var el = document.getElementById('thema-' + i);
-      if (el) {{ el.scrollIntoView({{behavior:'smooth', block:'center'}});
-                el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }}
-    }}
-    c.addEventListener('click', go);
-    c.addEventListener('keydown', function(e) {{ if (e.key === 'Enter' || e.key === ' ') {{ e.preventDefault(); go(); }} }});
-  }});
-
   // --- Live-Pressemitteilung ---
   // Backend-Endpoint (hält den GLM-Key geheim). Wird beim Setup gesetzt.
   var PM_ENDPOINT = {pm_endpoint};

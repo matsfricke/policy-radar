@@ -181,6 +181,13 @@ Die vier Erfolgsformel-Felder (was_aendert_sich, wer_betroffen, was_tun,
 wo_tuev_nord_hilft) sind JEWEILS eine Liste aus 2–4 kurzen, konkreten Stichpunkten
 (je 1 knapper Satz) – nur das, was für dieses Thema wirklich relevant ist.
 
+DIAGRAMM (optional, pro Thema): Wenn zu dem Thema konkrete, belastbare Zahlen
+vorliegen (z.B. Grenzwerte, Fristen, Marktgrößen, Betroffenenzahlen, Fördersummen,
+Prozentwerte, Zeitreihen), dann liefere ein "chart"-Objekt, das diese Statistik
+sinnvoll visualisiert. NUR echte, aus dem Quellmaterial/Kontext begründbare Werte –
+ERFINDE KEINE ZAHLEN. Wenn es keine sinnvollen Zahlen gibt, setze "chart": null.
+Mindestens 2 Datenpunkte, sonst null.
+
 Sortiere die Themen absteigend nach Relevanz (sehr hoch zuerst).
 
 Antworte GENAU in diesem JSON-Schema:
@@ -204,10 +211,19 @@ Antworte GENAU in diesem JSON-Schema:
       "was_aendert_sich": ["Stichpunkt", "Stichpunkt", "..."],
       "wer_betroffen": ["Stichpunkt", "..."],
       "was_tun": ["Stichpunkt", "..."],
-      "wo_tuev_nord_hilft": ["Stichpunkt", "..."]
+      "wo_tuev_nord_hilft": ["Stichpunkt", "..."],
+      "chart": {{
+        "type": "bar",
+        "title": "Aussagekräftiger Diagrammtitel",
+        "unit": "Einheit, z.B. % oder Mrd. €",
+        "data": [{{"label": "Kategorie/Jahr", "value": 12.3}}, {{"label": "...", "value": 45.6}}],
+        "quelle": "woher die Zahlen stammen"
+      }}
     }}
   ]
 }}
+
+Hinweis: "chart" ist optional – setze es auf null, wenn keine echten Zahlen vorliegen.
 """
 
 
