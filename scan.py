@@ -38,30 +38,39 @@ SEARCH_URL = f"{API_BASE}/web_search"
 MODEL = os.environ.get("GLM_MODEL", "glm-5.2")
 API_KEY = os.environ.get("GLM_API_KEY", "").strip()
 
-RECENCY = os.environ.get("SEARCH_RECENCY", "oneWeek")
-RESULTS_PER_SOURCE = int(os.environ.get("RESULTS_PER_SOURCE", "6"))
+# oneMonth statt oneWeek: der Zeitfilter wird von der Such-API nur lose beachtet;
+# ein größeres Fenster liefert mehr relevantes Material, GLM sortiert Altes aus.
+RECENCY = os.environ.get("SEARCH_RECENCY", "oneMonth")
+RESULTS_PER_SOURCE = int(os.environ.get("RESULTS_PER_SOURCE", "8"))
+YEAR = dt.datetime.now().year
 
 OUT_DIR = Path(os.environ.get("OUT_DIR", "docs"))
 
-# Quellen aus dem Workflow-Dokument: label · Domain-Filter · Bereich.
+# Quellen: label · Domain · Bereich · q (gezielte Suchbegriffe für diese Quelle).
+# Wichtig: Die Suche wird als `site:<domain> <q> <jahr>` gestellt – der site:-Operator
+# scopt zuverlässig auf die Quelle (der reine search_domain_filter tut das nicht).
 SOURCES = [
-    {"label": "EU-Kommission (Presscorner)", "domain": "ec.europa.eu",       "bereich": "Policy / Gesetzesinitiativen"},
-    {"label": "OECD",                        "domain": "oecd.org",           "bereich": "Strategische Trends"},
-    {"label": "ISO",                         "domain": "iso.org",            "bereich": "Normen / Zertifizierung"},
-    {"label": "EFSA",                        "domain": "efsa.europa.eu",     "bereich": "Food / Lebensmittelsicherheit"},
-    {"label": "EU Medizinprodukte (DG Health)","domain": "health.ec.europa.eu","bereich": "MedTech (MDR/IVDR)"},
-    {"label": "EFRAG",                       "domain": "efrag.org",          "bereich": "ESG / CSRD"},
-    {"label": "ENISA",                       "domain": "enisa.europa.eu",    "bereich": "KRITIS / Cyber (NIS2)"},
-    {"label": "BSI",                         "domain": "bsi.bund.de",        "bereich": "KRITIS / Cyber (national)"},
-    {"label": "Bruegel",                     "domain": "bruegel.org",        "bereich": "EU Think Tank"},
-    {"label": "McKinsey Insights",           "domain": "mckinsey.com",       "bereich": "Industrienahe Analyse"},
+    {"label": "EU-Kommission (Presscorner)", "domain": "ec.europa.eu",        "bereich": "Policy / Gesetzesinitiativen",
+     "q": "new regulation OR directive OR guidelines OR strategy policy"},
+    {"label": "OECD",                        "domain": "oecd.org",            "bereich": "Strategische Trends",
+     "q": "new report OR policy OR recommendation OR outlook"},
+    {"label": "ISO",                         "domain": "iso.org",             "bereich": "Normen / Zertifizierung",
+     "q": "new standard OR consultation OR revision news"},
+    {"label": "EFSA",                        "domain": "efsa.europa.eu",      "bereich": "Food / Lebensmittelsicherheit",
+     "q": "scientific opinion OR guidance OR safety assessment news"},
+    {"label": "EU Medizinprodukte (DG Health)","domain": "health.ec.europa.eu","bereich": "MedTech (MDR/IVDR)",
+     "q": "medical devices MDR OR IVDR OR MDCG guidance"},
+    {"label": "EFRAG",                       "domain": "efrag.org",           "bereich": "ESG / CSRD",
+     "q": "ESRS OR sustainability reporting OR CSRD OR VSME"},
+    {"label": "ENISA",                       "domain": "enisa.europa.eu",     "bereich": "KRITIS / Cyber (NIS2)",
+     "q": "NIS2 OR cybersecurity OR guidelines OR report"},
+    {"label": "BSI",                         "domain": "bsi.bund.de",         "bereich": "KRITIS / Cyber (national)",
+     "q": "Sicherheit OR Richtlinie OR KRITIS OR Warnung Pressemitteilung"},
+    {"label": "Bruegel",                     "domain": "bruegel.org",         "bereich": "EU Think Tank",
+     "q": "policy analysis OR regulation OR economy"},
+    {"label": "McKinsey Insights",           "domain": "mckinsey.com",        "bereich": "Industrienahe Analyse",
+     "q": "regulation OR ESG OR sustainability OR compliance insights"},
 ]
-
-SEARCH_QUERY = os.environ.get(
-    "SEARCH_QUERY",
-    "neue Leitlinien Draft Positionspapier Standard Regulierung Konsultation "
-    "Zertifizierung ESG Nachhaltigkeit MedTech Lebensmittel Cybersicherheit KRITIS",
-)
 
 RELEVANTE_BEREICHE = "Zertifizierung, ESG/Nachhaltigkeit, MedTech, Food, KRITIS/Infrastruktur/Cybersicherheit"
 
@@ -103,9 +112,11 @@ def _post_with_retry(url: str, payload: dict, timeout: int = 120, tries: int = 3
 # --------------------------------------------------------------------------- #
 
 def scan_source(source: dict) -> tuple[list[dict], bool]:
+    # site:-Operator scopt zuverlässig auf die Quelle; Jahr hält die Treffer aktuell.
+    query = f"site:{source['domain']} {source['q']} {YEAR}"
     payload = {
         "search_engine": "search-prime",
-        "search_query": SEARCH_QUERY,
+        "search_query": query,
         "count": RESULTS_PER_SOURCE,
         "search_recency_filter": RECENCY,
         "search_domain_filter": source["domain"],
