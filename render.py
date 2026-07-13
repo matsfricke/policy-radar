@@ -218,7 +218,9 @@ def _pm_zone(idx: int, pm: str) -> str:
 # Seite
 # --------------------------------------------------------------------------- #
 
-def build_report(data: dict, generated_at: dt.datetime) -> str:
+def build_report(data: dict, generated_at: dt.datetime, history_href: str = "archiv/") -> str:
+    # history_href: von der Hauptseite (/…/) "archiv/"; von einem archivierten
+    # Snapshot (/…/archiv/DATUM.html) muss er "./" sein, sonst doppelt sich der Pfad.
     local = generated_at.astimezone()
     datum = f"{local.day}. {MONATE[local.month]} {local.year}"
     kw = _kw(local.date())
@@ -337,7 +339,7 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
     <p class="subtitle">Wirtschafts- und Politikthemen mit PR-Relevanz für TÜV-NORD-Kunden</p>
     <div class="meta"><b>{datum}</b> (KW {kw}) · Bereiche: Zertifizierung · ESG · MedTech · Food · KRITIS · automatisch via GLM-5.2</div>
     {f'<p class="hinweis">{hinweis}</p>' if hinweis else ''}
-    <nav class="topnav"><a href="archiv/">🗂 Historie – frühere Tage ansehen</a></nav>
+    <nav class="topnav"><a href="{history_href}">🗂 Historie – frühere Tage ansehen</a></nav>
   </header>
 
   <h2 class="sec">Themen</h2>
@@ -347,7 +349,7 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
   <footer>
     Automatisch erzeugt durch die Policy Scanning Routine · GLM-5.2 · z.ai Web Search.
     Quellen verlinkt; vor Veröffentlichung redaktionell prüfen.
-    · <a href="archiv/">🗂 Historie</a>
+    · <a href="{history_href}">🗂 Historie</a>
   </footer>
 </div>
 

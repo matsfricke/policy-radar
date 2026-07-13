@@ -406,15 +406,16 @@ def main() -> int:
 
     from render import build_report, build_archive_index
 
-    html = build_report(data, now)
-
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUT_DIR / "index.html").write_text(html, encoding="utf-8")
+    # Hauptseite (unter /): Historie-Link = "archiv/"
+    (OUT_DIR / "index.html").write_text(build_report(data, now), encoding="utf-8")
 
-    # Tages-Snapshot ins Archiv (bleibt dauerhaft im Repo erhalten)
+    # Tages-Snapshot ins Archiv (unter /archiv/): Historie-Link = "./",
+    # sonst würde der relative Pfad zu /archiv/archiv/ verdoppelt.
     archive_dir = OUT_DIR / "archiv"
     archive_dir.mkdir(exist_ok=True)
-    (archive_dir / f"{now:%Y-%m-%d}.html").write_text(html, encoding="utf-8")
+    (archive_dir / f"{now:%Y-%m-%d}.html").write_text(
+        build_report(data, now, history_href="./"), encoding="utf-8")
 
     # Historie fortschreiben und Übersichtsseite neu bauen
     history = update_history(now, data)
