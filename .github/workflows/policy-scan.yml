@@ -1,0 +1,59 @@
+name: Policy Scanning Routine
+
+on:
+  schedule:
+    # Täglich 05:15 UTC (~07:15 Berlin im Sommer, ~06:15 im Winter).
+    # Cron-Zeiten sind immer UTC. Für einen Wochenlauf z.B.: "15 5 * * 1" (montags).
+    - cron: "15 5 * * *"
+  workflow_dispatch:        # erlaubt manuelles Auslösen per Knopf in der Actions-UI
+
+# Nötig, damit der Lauf das erzeugte docs/ zurück ins Repo committen darf.
+permissions:
+  contents: write
+
+concurrency:
+  group: policy-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo auschecken
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Recherche-Scan ausführen
+        env:
+          GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
+          # Optional übersteuerbar:
+          GLM_MODEL: ${{ vars.GLM_MODEL || 'glm-5.2' }}
+          SEARCH_RECENCY: ${{ vars.SEARCH_RECENCY || 'oneWeek' }}
+        run: python scan.py
+
+      - name: Ergebnis per Mail senden (optional)
+        env:
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          PAGES_URL: ${{ vars.PAGES_URL }}
+        run: python mailer.py
+
+      - name: Ergebnis committen
+        run: |
+          git config user.name  "policy-scan-bot"
+          git config user.email "actions@github.com"
+          git add docs
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen – nichts zu committen."
+          else
+            git commit -m "Policy-Scan $(date -u +%Y-%m-%d)"
+            git push
+          fi

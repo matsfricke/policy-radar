@@ -1,0 +1,13 @@
+# Geheimnisse niemals committen
+.env
+*.key
+
+# lokale Test-Artefakte
+__pycache__/
+*.pyc
+.DS_Store
+
+# Word-Quelle & manuelle Testläufe bleiben lokal (nicht auf die öffentliche Seite)
+30 Minuten Workflow.docx
+Policy-Scan-Ergebnis.html
+Policy-Scan-Ergebnis.pdf
