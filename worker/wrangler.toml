@@ -1,0 +1,13 @@
+name = "policy-radar-pm"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# Öffentliche Variablen (kein Geheimnis):
+[vars]
+GLM_MODEL = "glm-5.2"
+# Nach dem Pages-Setup auf deine Website-Origin setzen, z.B.:
+# ALLOWED_ORIGIN = "https://DEIN-USER.github.io"
+ALLOWED_ORIGIN = "*"
+
+# Der GLM-Key wird NICHT hier, sondern als Secret gesetzt:
+#   wrangler secret put GLM_API_KEY
