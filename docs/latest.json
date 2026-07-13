@@ -1,68 +1,73 @@
 {
-  "generated_at": "2026-07-13T09:46:10.977686+00:00",
-  "hinweis": "2 relevante Themen identifiziert, davon 0 mit hoher Relevanz. Die meisten Fundstellen betreffen EU-Wettbewerbsrecht und Fusionskontrolle, die für TÜV-NORD-Kernbereiche wenig relevant sind.",
+  "generated_at": "2026-07-13T10:01:49.013471+00:00",
+  "hinweis": "2 relevante Themen identifiziert, davon 1 mit hoher Relevanz. Viele Fundstellen betreffen Fusionskontrolle/Kartellrecht ohne TÜV-NORD-Bezug.",
   "themen": [
     {
-      "titel": "KI-Definition als entscheidender Hebel der EU-KI-Verordnung – Wirtschaft fordert Präzisierung",
-      "source": "OECD",
+      "titel": "KI-Definition als zentraler Hebel der EU-KI-Regulierung – GDV-Positionspapier",
+      "source": "OECD (via GDV)",
       "date": "",
       "url": "https://www.gdv.de/resource/blob/178916/d777c5e3384119d263f6a83781b63c98/positionspapier-ki-data.pdf",
       "bereich": "Zertifizierung",
-      "relevanz": "mittel",
-      "relevanz_begruendung": "Die KI-Definition bestimmt, welche Systeme künftig zertifizierungspflichtig werden – direkt relevant für TÜV NORDs wachsendes AI-Assurance-Geschäft.",
-      "timing_bucket": "6-12 Monate",
-      "timing_text": "Die EU-KI-Verordnung tritt schrittweise ab 2026 in Kraft; die Definition ist jetzt entscheidend für die Vorbereitung.",
-      "pr_potenzial": "mittel",
-      "zusammenfassung": "In einem Positionspapier weist die deutsche Wirtschaft darauf hin, dass die KI-Definition im EU-KI-Act den Anwendungsbereich der künftigen Regulierung maßgeblich bestimmt. Eine zu weite Definition könnte unverhältnismäßige Anforderungen an Unternehmen stellen, eine zu enge Lücken lassen. Für Prüf- und Zertifizierungsorganisationen ist die genaue Abgrenzung zentral, da sie festlegt, welche Systeme einer Konformitätsbewertung unterliegen. Das Thema gewinnt an Dringlichkeit, da die Umsetzungsfristen der KI-Verordnung näher rücken.",
-      "vorschlag_ueberschrift": "",
-      "kernaussage": "Die präzise Definition von KI im EU-Recht entscheidet darüber, welche Systeme zertifiziert werden müssen – Unternehmen müssen jetzt Klarheit für ihre Compliance-Strategie schaffen.",
+      "relevanz": "hoch",
+      "relevanz_begruendung": "Die EU-KI-Verordnung verpflichtet Hersteller hochriskanter KI-Systeme zur Konformitätsbewertung durch benannte Stellen – ein Kerngeschäftsfeld von TÜV NORD.",
+      "timing_bucket": "jetzt",
+      "timing_text": "Die EU-KI-Verordnung tritt ab 2025/2026 stufenweise in Kraft; die Definition des Anwendungsbereichs ist jetzt entscheidend.",
+      "pr_potenzial": "hoch",
+      "zusammenfassung": "Der GDV hat ein Positionspapier zur KI-Definition im Rahmen der EU-KI-Verordnung veröffentlicht. Die Wirtschaft betont, dass die KI-Definition den Anwendungsbereich der künftigen Regulierung bestimmt und für die Praxis entscheidend ist. Die EU-KI-Verordnung stuft KI-Systeme nach Risikoklassen ein und verlangt für hochriskante Systeme Konformitätsbewertungen durch unabhängige Prüfstellen. Gerade jetzt, da die Implementierungsphase läuft, ist die genaue Abgrenzung, was als KI-System gilt, zentral für alle Unternehmen, die KI einsetzen oder entwickeln.",
+      "vorschlag_ueberschrift": "KI-Verordnung kommt: Wer jetzt seine KI-Systeme nicht prüfen lässt, riskiert Marktverlust",
+      "kernaussage": "Die präzise KI-Definition der EU-Verordnung entscheidet über Prüfpflichten – Unternehmen müssen jetzt ihren Handlungsbedarf ermitteln.",
       "was_aendert_sich": [
-        "Die EU-KI-Verordnung legt fest, welche KI-Systeme einer Konformitätsbewertung unterliegen",
-        "Der Anwendungsbereich hängt maßgeblich von der zugrundegelegten KI-Definition ab"
+        "EU-KI-Verordnung definiert verbindlich, was als KI-System gilt und welche Risikoklassen gelten.",
+        "Hochriskante KI-Systeme benötigen eine Konformitätsbewertung durch eine benannte Stelle.",
+        "Stufenweises Inkrafttreten ab 2025/2026 setzt Unternehmen unter Zeitdruck."
       ],
       "wer_betroffen": [
-        "Entwickler und Betreiber von KI-Systemen in der EU",
-        "Prüf- und Zertifizierungsstellen, die Konformitätsbewertungen durchführen"
+        "Hersteller und Betreiber von KI-Systemen in regulierten Bereichen wie MedTech, Automobil, KRITIS.",
+        "Unternehmen, die KI in sicherheitsrelevanten Anwendungen einsetzen."
       ],
       "was_tun": [
-        "Bestandsaufnahme eigener KI-Systeme gegen die KI-Act-Definition vornehmen",
-        "Risikoklassifizierung der eingesetzten KI-Systeme durchführen"
+        "Bestandsaufnahme: Welche KI-Systeme fallen unter welche Risikoklasse?",
+        "Konformitätsbewertung für hochriskante Systeme frühzeitig einleiten.",
+        "Interne KI-Governance und Risikomanagement aufbauen."
       ],
       "wo_tuev_nord_hilft": [
-        "Konformitätsbewertung und Zertifizierung von KI-Systemen nach EU-KI-Verordnung",
-        "Beratung zur Risikoklassifizierung und Compliance-Strategie"
-      ]
+        "Konformitätsbewertung hochriskanter KI-Systeme als benannte Stelle.",
+        "Zertifizierung von KI-Managementsystemen nach ISO/IEC 42001.",
+        "Beratung zur Einordnung von KI-Systemen in die Risikoklassen der EU-Verordnung."
+      ],
+      "chart": null
     },
     {
-      "titel": "BDA-Positionspapier: EU-Rechtsetzung reformieren – weniger Belastungen, mehr Verhältnismäßigkeit",
-      "source": "EU-Kommission (Presscorner)",
-      "date": "2026年2月3日",
-      "url": "https://arbeitgeber.de/wp-content/uploads/bda-arbeitgeber-positionspapier-EU_Rechtsetzung_reformieren_bessere_Prozesse_weniger_Belastungen-2026_02.pdf",
-      "bereich": "Sonstiges",
-      "relevanz": "niedrig",
-      "relevanz_begruendung": "Die geforderte Verhältnismäßigkeit neuer Rechtsakte könnte künftige Zertifizierungspflichten beeinflussen, ist aber zu allgemein für konkrete TÜV-NORD-Aussagen.",
-      "timing_bucket": "1-3 Jahre",
-      "timing_text": "Die Forderungen zielen auf die EU-Legislaturperiode 2024 bis 2029 ab; konkrete Reformen sind mittelfristig zu erwarten.",
-      "pr_potenzial": "niedrig",
-      "zusammenfassung": "Die BDA fordert in einem Positionspapier, dass neue EU-Rechtsakte künftig nur noch vorgeschlagen werden sollen, wenn sie verhältnismäßig und notwendig sind. Die Richtlinien über bessere Rechtsetzung sollen gestärkt werden, um Bürokratie und Belastungen für Unternehmen zu reduzieren. Dies betrifft auch den Bereich der Zertifizierung und Normung, wo unverhältnismäßige Anforderungen die Wirtschaft belasten können. Das Papier richtet sich an die EU-Institutionen für die laufende Legislaturperiode.",
+      "titel": "AMLA konsultiert Entwürfe für AML-Leitlinien und technische Regulierungsstandards",
+      "source": "ISO (via WPK)",
+      "date": "2026年4月20日",
+      "url": "https://www.wpk.de/neu/konsultationen-der-amla-zum-entwurf-einer-leitlinie-und-eines-technischen-regulierungsstandards/",
+      "bereich": "KRITIS",
+      "relevanz": "mittel",
+      "relevanz_begruendung": "Neue AML-Leitlinien der EU-Geldwäschebehörde erhöhen Compliance-Anforderungen für Finanzinstitute und verpflichtete Unternehmen – TÜV NORD prüft Compliance-Management-Systeme.",
+      "timing_bucket": "6-12 Monate",
+      "timing_text": "Konsultation läuft, finale Leitlinien und technische Standards werden voraussichtlich 2026/27 erwartet.",
+      "pr_potenzial": "mittel",
+      "zusammenfassung": "Die neue EU-Anti-Geldwäsche-Behörde (AMLA) hat Entwürfe für Leitlinien und technische Regulierungsstandards zur Konsultation gestellt. Diese konkretisieren die Anforderungen an Geldwäscheprävention und betreffen unter anderem Kriterien zur Bestimmung von Mutterunternehmen sowie Regelungen zum Informationsaustausch. Die AMLA nimmt als neue EU-Behörde ihre Arbeit auf und schafft erstmals einen harmonisierten Rahmen für die AML-Aufsicht in Europa. Für verpflichtete Unternehmen bedeutet dies schärfere und vereinheitlichte Compliance-Vorgaben.",
       "vorschlag_ueberschrift": "",
-      "kernaussage": "Die BDA fordert Verhältnismäßigkeit bei neuen EU-Rechtsakten – auch Zertifizierungspflichten könnten künftig stärker auf Notwendigkeit geprüft werden.",
+      "kernaussage": "Die AMLA schafft mit ihren ersten Leitlinien einen harmonisierten EU-Standard für Geldwäscheprävention – verpflichtete Unternehmen müssen ihre Compliance-Systeme anpassen.",
       "was_aendert_sich": [
-        "Neue EU-Rechtsakte sollen künftig auf Verhältnismäßigkeit und Notwendigkeit geprüft werden",
-        "Bürokratieabbau und Entlastung der Wirtschaft werden politisch höher gewichtet"
+        "Neue EU-Behörde AMLA erlässt erstmals unionweit geltende AML-Leitlinien.",
+        "Technische Regulierungsstandards konkretisieren Meldepflichten und Informationsaustausch."
       ],
       "wer_betroffen": [
-        "Unternehmen, die unter EU-Regulierung und Zertifizierungspflichten fallen",
-        "Normungsgremien und Standardisierungsorganisationen"
+        "Banken, Finanzinstitute und weitere verpflichtete Unternehmen nach GwG.",
+        "Konzerne mit komplexen Mutter-Tochter-Strukturen im Geltungsbereich."
       ],
       "was_tun": [
-        "Bestehende Zertifizierungspflichten auf Verhältnismäßigkeit prüfen",
-        "Position in EU-Konsultationen zu neuen Rechtsakten einbringen"
+        "Konsultationsergebnisse verfolgen und eigene Stellungnahme prüfen.",
+        "Bestehende AML-Compliance-Systeme auf neue Anforderungen vorbereiten."
       ],
       "wo_tuev_nord_hilft": [
-        "Effizienzprüfung bestehender Compliance- und Zertifizierungsprozesse",
-        "Unterstützung bei der Einordnung neuer regulatorischer Anforderungen"
-      ]
+        "Prüfung und Zertifizierung von Compliance-Management-Systemen.",
+        "Audits zur Geldwäscheprävention und Risikobewertung."
+      ],
+      "chart": null
     }
   ]
 }

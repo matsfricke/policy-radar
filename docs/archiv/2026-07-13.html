@@ -31,32 +31,13 @@
                border:1px solid var(--border); border-radius:8px; padding:7px 14px; text-decoration:none; background:var(--card); }
   .topnav a:hover { border-color:var(--teal); }
 
-  /* Chart */
-  .chart-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px 10px; margin:14px 0 8px; position:relative; }
-  .chart-title { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px; }
-  .chart-hint { font-size:12px; font-weight:400; color:var(--muted); }
-  .chart-wrap { overflow-x:auto; }
-  .radar { width:100%; min-width:480px; height:auto; display:block; }
-  .radar .grid { stroke:var(--border); stroke-width:1; }
-  .radar .axlab { fill:var(--muted); font-size:11px; }
-  .radar .axtitle { fill:var(--teal); font-size:11px; font-weight:700; }
-  .radar .bub { opacity:.82; cursor:pointer; stroke:var(--card); stroke-width:1.5; transition:opacity .15s; outline:none; }
-  .radar .bub:hover, .radar .bub:focus { opacity:1; stroke:var(--dark); stroke-width:2; }
-  .legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:4px; font-size:12px; color:var(--muted); }
-  .lg { display:inline-flex; align-items:center; gap:5px; }
-  .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
-  .tip { position:fixed; z-index:20; background:var(--dark); color:#fff; padding:8px 11px; border-radius:7px; font-size:12.5px; max-width:260px; pointer-events:none; box-shadow:0 4px 16px rgba(0,0,0,.25); }
-  .tip b { display:block; margin-bottom:3px; }
-
-  h2.sec { font-size:20px; color:var(--dark); margin:30px 0 4px; padding-bottom:6px; border-bottom:2px solid var(--teal); }
+  h2.sec { font-size:20px; color:var(--dark); margin:26px 0 4px; padding-bottom:6px; border-bottom:2px solid var(--teal); }
   .sec-sub { color:var(--muted); font-size:14px; margin:0 0 14px; }
   .empty { color:var(--muted); font-style:italic; }
 
   /* Themen-Karten */
   .topic { background:var(--card); border:1px solid var(--border); border-left:5px solid var(--rel);
             border-radius:10px; padding:16px 18px; margin-bottom:14px; scroll-margin-top:16px; }
-  .topic.flash { animation:flash 1.2s ease; }
-  @keyframes flash { 0%,100%{background:var(--card);} 25%{background:rgba(0,139,139,.10);} }
   .topic-top { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
   .chip { font-size:12px; border:1px solid var(--border); border-radius:20px; padding:2px 10px; color:var(--muted); background:var(--soft); }
   .chip b { color:var(--dark); font-weight:700; }
@@ -69,6 +50,20 @@
   .topic-summary { font-size:15px; margin:0 0 10px; }
   .topic-reason { font-size:14px; color:var(--muted); margin:0 0 12px; }
   .topic-reason b { color:var(--dark); }
+
+  /* Themen-Chart (von GLM erzeugte Statistik) */
+  .topic-chart { margin:2px 0 14px; padding:12px 14px 8px; border:1px solid var(--border);
+                  border-radius:8px; background:var(--soft); overflow-x:auto; }
+  .topic-chart figcaption { font-size:13.5px; font-weight:700; color:var(--dark); margin-bottom:6px; }
+  .topic-chart svg { width:100%; min-width:340px; height:auto; display:block; }
+  .topic-chart .c-axis { stroke:var(--border); stroke-width:1; }
+  .topic-chart .c-bar { fill:var(--teal); }
+  .topic-chart .c-line { fill:none; stroke:var(--teal); stroke-width:2.5; }
+  .topic-chart .c-dot { fill:var(--teal); }
+  .topic-chart .c-val { fill:var(--dark); font-size:11px; font-weight:700; }
+  .topic-chart .c-lab { fill:var(--muted); font-size:11px; }
+  .topic-chart .c-note { font-size:11.5px; color:var(--muted); margin-top:4px; }
+  .topic-chart .c-src { font-size:11.5px; color:var(--muted); margin-top:2px; }
 
   .headline-box { background:linear-gradient(0deg,rgba(0,139,139,.08),rgba(0,139,139,.08)); border:1px dashed var(--teal);
                    border-radius:8px; padding:10px 14px; margin:0 0 12px; }
@@ -111,68 +106,59 @@
     <h1>Policy Radar</h1>
     <p class="subtitle">Wirtschafts- und Politikthemen mit PR-Relevanz für TÜV-NORD-Kunden</p>
     <div class="meta"><b>13. Juli 2026</b> (KW 29) · Bereiche: Zertifizierung · ESG · MedTech · Food · KRITIS · automatisch via GLM-5.2</div>
-    <p class="hinweis">2 relevante Themen identifiziert, davon 0 mit hoher Relevanz. Die meisten Fundstellen betreffen EU-Wettbewerbsrecht und Fusionskontrolle, die für TÜV-NORD-Kernbereiche wenig relevant sind.</p>
+    <p class="hinweis">2 relevante Themen identifiziert, davon 1 mit hoher Relevanz. Viele Fundstellen betreffen Fusionskontrolle/Kartellrecht ohne TÜV-NORD-Bezug.</p>
     <nav class="topnav"><a href="archiv/">🗂 Historie – frühere Tage ansehen</a></nav>
   </header>
-
-  
-    <div class="chart-card">
-      <div class="chart-title">Policy-Radar <span class="chart-hint">Relevanz × Timing · Blasengröße = PR-Potenzial · Klick springt zum Thema</span></div>
-      <div class="chart-wrap">
-        <svg viewBox="0 0 720 330" class="radar" role="img" aria-label="Policy-Radar">
-          <text x="64" y="14" class="axtitle">▲ Relevanz</text>
-          <text x="700" y="318" class="axtitle" text-anchor="end">Timing ▶</text>
-          <line x1="144" y1="24" x2="144" y2="300" class="grid"/><text x="144" y="318" class="axlab" text-anchor="middle">jetzt</text><line x1="302" y1="24" x2="302" y2="300" class="grid"/><text x="302" y="318" class="axlab" text-anchor="middle">6–12 Mon.</text><line x1="462" y1="24" x2="462" y2="300" class="grid"/><text x="462" y="318" class="axlab" text-anchor="middle">1–3 Jahre</text><line x1="620" y1="24" x2="620" y2="300" class="grid"/><text x="620" y="318" class="axlab" text-anchor="middle">>3 Jahre</text><line x1="64" y1="39" x2="700" y2="39" class="grid"/><text x="56" y="43" class="axlab" text-anchor="end">sehr hoch</text><line x1="64" y1="121" x2="700" y2="121" class="grid"/><text x="56" y="125" class="axlab" text-anchor="end">hoch</text><line x1="64" y1="203" x2="700" y2="203" class="grid"/><text x="56" y="207" class="axlab" text-anchor="end">mittel</text><line x1="64" y1="285" x2="700" y2="285" class="grid"/><text x="56" y="289" class="axlab" text-anchor="end">niedrig</text>
-          <circle class="bub" cx="286" cy="203" r="9" fill="#008b8b" data-i="0" tabindex="0"/><circle class="bub" cx="446" cy="285" r="6" fill="#8a8f98" data-i="1" tabindex="0"/>
-        </svg>
-      </div>
-      <div class="legend"><span class="lg"><span class="dot" style="background:#008b8b"></span>Zertifizierung</span><span class="lg"><span class="dot" style="background:#8a8f98"></span>Sonstiges</span></div>
-      <div id="tip" class="tip" hidden></div>
-    </div>
 
   <h2 class="sec">Themen</h2>
   <p class="sec-sub">Nach Relevanz sortiert. Jede Karte kombiniert Fund, Bewertung und PR-Winkel (Erfolgsformel).</p>
   
-    <article class="topic" id="thema-0" style="--rel:#008b8b">
+    <article class="topic" id="thema-0" style="--rel:#e67e22">
       <div class="topic-top">
         <span class="chip bereich" style="--c:#008b8b">Zertifizierung</span>
-        <span class="chip" style="--c:#008b8b"><b>Relevanz</b> mittel</span>
-        <span class="chip"><b>Timing</b> 6-12 Monate</span>
-        <span class="chip"><b>PR</b> mittel</span>
+        <span class="chip" style="--c:#e67e22"><b>Relevanz</b> hoch</span>
+        <span class="chip"><b>Timing</b> jetzt</span>
+        <span class="chip"><b>PR</b> hoch</span>
       </div>
-      <h3 class="topic-title">KI-Definition als entscheidender Hebel der EU-KI-Verordnung – Wirtschaft fordert Präzisierung</h3>
-      <div class="topic-meta"><a href="https://www.gdv.de/resource/blob/178916/d777c5e3384119d263f6a83781b63c98/positionspapier-ki-data.pdf" target="_blank" rel="noopener noreferrer">OECD</a> · Die EU-KI-Verordnung tritt schrittweise ab 2026 in Kraft; die Definition ist jetzt entscheidend für die Vorbereitung.</div>
-      <p class="topic-summary">In einem Positionspapier weist die deutsche Wirtschaft darauf hin, dass die KI-Definition im EU-KI-Act den Anwendungsbereich der künftigen Regulierung maßgeblich bestimmt. Eine zu weite Definition könnte unverhältnismäßige Anforderungen an Unternehmen stellen, eine zu enge Lücken lassen. Für Prüf- und Zertifizierungsorganisationen ist die genaue Abgrenzung zentral, da sie festlegt, welche Systeme einer Konformitätsbewertung unterliegen. Das Thema gewinnt an Dringlichkeit, da die Umsetzungsfristen der KI-Verordnung näher rücken.</p>
-      <p class="topic-reason"><b>Warum relevant:</b> Die KI-Definition bestimmt, welche Systeme künftig zertifizierungspflichtig werden – direkt relevant für TÜV NORDs wachsendes AI-Assurance-Geschäft.</p>
+      <h3 class="topic-title">KI-Definition als zentraler Hebel der EU-KI-Regulierung – GDV-Positionspapier</h3>
+      <div class="topic-meta"><a href="https://www.gdv.de/resource/blob/178916/d777c5e3384119d263f6a83781b63c98/positionspapier-ki-data.pdf" target="_blank" rel="noopener noreferrer">OECD (via GDV)</a> · Die EU-KI-Verordnung tritt ab 2025/2026 stufenweise in Kraft; die Definition des Anwendungsbereichs ist jetzt entscheidend.</div>
+      <p class="topic-summary">Der GDV hat ein Positionspapier zur KI-Definition im Rahmen der EU-KI-Verordnung veröffentlicht. Die Wirtschaft betont, dass die KI-Definition den Anwendungsbereich der künftigen Regulierung bestimmt und für die Praxis entscheidend ist. Die EU-KI-Verordnung stuft KI-Systeme nach Risikoklassen ein und verlangt für hochriskante Systeme Konformitätsbewertungen durch unabhängige Prüfstellen. Gerade jetzt, da die Implementierungsphase läuft, ist die genaue Abgrenzung, was als KI-System gilt, zentral für alle Unternehmen, die KI einsetzen oder entwickeln.</p>
       
+      <p class="topic-reason"><b>Warum relevant:</b> Die EU-KI-Verordnung verpflichtet Hersteller hochriskanter KI-Systeme zur Konformitätsbewertung durch benannte Stellen – ein Kerngeschäftsfeld von TÜV NORD.</p>
+      
+        <div class="headline-box">
+          <span class="hl-label">Überschriften-Vorschlag</span>
+          <p class="hl-text">KI-Verordnung kommt: Wer jetzt seine KI-Systeme nicht prüfen lässt, riskiert Marktverlust</p>
+        </div>
       <div class="formel">
-        <div class="f-step"><span class="f-label">Entwicklung</span><ul><li>Die EU-KI-Verordnung legt fest, welche KI-Systeme einer Konformitätsbewertung unterliegen</li><li>Der Anwendungsbereich hängt maßgeblich von der zugrundegelegten KI-Definition ab</li></ul></div>
-        <div class="f-step"><span class="f-label">Auswirkung</span><ul><li>Entwickler und Betreiber von KI-Systemen in der EU</li><li>Prüf- und Zertifizierungsstellen, die Konformitätsbewertungen durchführen</li></ul></div>
-        <div class="f-step"><span class="f-label">Handlung</span><ul><li>Bestandsaufnahme eigener KI-Systeme gegen die KI-Act-Definition vornehmen</li><li>Risikoklassifizierung der eingesetzten KI-Systeme durchführen</li></ul></div>
-        <div class="f-step tuev"><span class="f-label">TÜV NORD Lösung</span><ul><li>Konformitätsbewertung und Zertifizierung von KI-Systemen nach EU-KI-Verordnung</li><li>Beratung zur Risikoklassifizierung und Compliance-Strategie</li></ul></div>
+        <div class="f-step"><span class="f-label">Entwicklung</span><ul><li>EU-KI-Verordnung definiert verbindlich, was als KI-System gilt und welche Risikoklassen gelten.</li><li>Hochriskante KI-Systeme benötigen eine Konformitätsbewertung durch eine benannte Stelle.</li><li>Stufenweises Inkrafttreten ab 2025/2026 setzt Unternehmen unter Zeitdruck.</li></ul></div>
+        <div class="f-step"><span class="f-label">Auswirkung</span><ul><li>Hersteller und Betreiber von KI-Systemen in regulierten Bereichen wie MedTech, Automobil, KRITIS.</li><li>Unternehmen, die KI in sicherheitsrelevanten Anwendungen einsetzen.</li></ul></div>
+        <div class="f-step"><span class="f-label">Handlung</span><ul><li>Bestandsaufnahme: Welche KI-Systeme fallen unter welche Risikoklasse?</li><li>Konformitätsbewertung für hochriskante Systeme frühzeitig einleiten.</li><li>Interne KI-Governance und Risikomanagement aufbauen.</li></ul></div>
+        <div class="f-step tuev"><span class="f-label">TÜV NORD Lösung</span><ul><li>Konformitätsbewertung hochriskanter KI-Systeme als benannte Stelle.</li><li>Zertifizierung von KI-Managementsystemen nach ISO/IEC 42001.</li><li>Beratung zur Einordnung von KI-Systemen in die Risikoklassen der EU-Verordnung.</li></ul></div>
       </div>
       <div class="pm-zone">
         <button class="pm-btn" data-i="0">✍️ Pressemitteilung live schreiben</button>
         <div class="pm-out" id="pm-out-0" hidden></div>
       </div>
     </article>
-    <article class="topic" id="thema-1" style="--rel:#8a8f98">
+    <article class="topic" id="thema-1" style="--rel:#008b8b">
       <div class="topic-top">
-        <span class="chip bereich" style="--c:#8a8f98">Sonstiges</span>
-        <span class="chip" style="--c:#8a8f98"><b>Relevanz</b> niedrig</span>
-        <span class="chip"><b>Timing</b> 1-3 Jahre</span>
-        <span class="chip"><b>PR</b> niedrig</span>
+        <span class="chip bereich" style="--c:#c0392b">KRITIS</span>
+        <span class="chip" style="--c:#008b8b"><b>Relevanz</b> mittel</span>
+        <span class="chip"><b>Timing</b> 6-12 Monate</span>
+        <span class="chip"><b>PR</b> mittel</span>
       </div>
-      <h3 class="topic-title">BDA-Positionspapier: EU-Rechtsetzung reformieren – weniger Belastungen, mehr Verhältnismäßigkeit</h3>
-      <div class="topic-meta"><a href="https://arbeitgeber.de/wp-content/uploads/bda-arbeitgeber-positionspapier-EU_Rechtsetzung_reformieren_bessere_Prozesse_weniger_Belastungen-2026_02.pdf" target="_blank" rel="noopener noreferrer">EU-Kommission (Presscorner) · 2026年2月3日</a> · Die Forderungen zielen auf die EU-Legislaturperiode 2024 bis 2029 ab; konkrete Reformen sind mittelfristig zu erwarten.</div>
-      <p class="topic-summary">Die BDA fordert in einem Positionspapier, dass neue EU-Rechtsakte künftig nur noch vorgeschlagen werden sollen, wenn sie verhältnismäßig und notwendig sind. Die Richtlinien über bessere Rechtsetzung sollen gestärkt werden, um Bürokratie und Belastungen für Unternehmen zu reduzieren. Dies betrifft auch den Bereich der Zertifizierung und Normung, wo unverhältnismäßige Anforderungen die Wirtschaft belasten können. Das Papier richtet sich an die EU-Institutionen für die laufende Legislaturperiode.</p>
-      <p class="topic-reason"><b>Warum relevant:</b> Die geforderte Verhältnismäßigkeit neuer Rechtsakte könnte künftige Zertifizierungspflichten beeinflussen, ist aber zu allgemein für konkrete TÜV-NORD-Aussagen.</p>
+      <h3 class="topic-title">AMLA konsultiert Entwürfe für AML-Leitlinien und technische Regulierungsstandards</h3>
+      <div class="topic-meta"><a href="https://www.wpk.de/neu/konsultationen-der-amla-zum-entwurf-einer-leitlinie-und-eines-technischen-regulierungsstandards/" target="_blank" rel="noopener noreferrer">ISO (via WPK) · 2026年4月20日</a> · Konsultation läuft, finale Leitlinien und technische Standards werden voraussichtlich 2026/27 erwartet.</div>
+      <p class="topic-summary">Die neue EU-Anti-Geldwäsche-Behörde (AMLA) hat Entwürfe für Leitlinien und technische Regulierungsstandards zur Konsultation gestellt. Diese konkretisieren die Anforderungen an Geldwäscheprävention und betreffen unter anderem Kriterien zur Bestimmung von Mutterunternehmen sowie Regelungen zum Informationsaustausch. Die AMLA nimmt als neue EU-Behörde ihre Arbeit auf und schafft erstmals einen harmonisierten Rahmen für die AML-Aufsicht in Europa. Für verpflichtete Unternehmen bedeutet dies schärfere und vereinheitlichte Compliance-Vorgaben.</p>
+      
+      <p class="topic-reason"><b>Warum relevant:</b> Neue AML-Leitlinien der EU-Geldwäschebehörde erhöhen Compliance-Anforderungen für Finanzinstitute und verpflichtete Unternehmen – TÜV NORD prüft Compliance-Management-Systeme.</p>
       
       <div class="formel">
-        <div class="f-step"><span class="f-label">Entwicklung</span><ul><li>Neue EU-Rechtsakte sollen künftig auf Verhältnismäßigkeit und Notwendigkeit geprüft werden</li><li>Bürokratieabbau und Entlastung der Wirtschaft werden politisch höher gewichtet</li></ul></div>
-        <div class="f-step"><span class="f-label">Auswirkung</span><ul><li>Unternehmen, die unter EU-Regulierung und Zertifizierungspflichten fallen</li><li>Normungsgremien und Standardisierungsorganisationen</li></ul></div>
-        <div class="f-step"><span class="f-label">Handlung</span><ul><li>Bestehende Zertifizierungspflichten auf Verhältnismäßigkeit prüfen</li><li>Position in EU-Konsultationen zu neuen Rechtsakten einbringen</li></ul></div>
-        <div class="f-step tuev"><span class="f-label">TÜV NORD Lösung</span><ul><li>Effizienzprüfung bestehender Compliance- und Zertifizierungsprozesse</li><li>Unterstützung bei der Einordnung neuer regulatorischer Anforderungen</li></ul></div>
+        <div class="f-step"><span class="f-label">Entwicklung</span><ul><li>Neue EU-Behörde AMLA erlässt erstmals unionweit geltende AML-Leitlinien.</li><li>Technische Regulierungsstandards konkretisieren Meldepflichten und Informationsaustausch.</li></ul></div>
+        <div class="f-step"><span class="f-label">Auswirkung</span><ul><li>Banken, Finanzinstitute und weitere verpflichtete Unternehmen nach GwG.</li><li>Konzerne mit komplexen Mutter-Tochter-Strukturen im Geltungsbereich.</li></ul></div>
+        <div class="f-step"><span class="f-label">Handlung</span><ul><li>Konsultationsergebnisse verfolgen und eigene Stellungnahme prüfen.</li><li>Bestehende AML-Compliance-Systeme auf neue Anforderungen vorbereiten.</li></ul></div>
+        <div class="f-step tuev"><span class="f-label">TÜV NORD Lösung</span><ul><li>Prüfung und Zertifizierung von Compliance-Management-Systemen.</li><li>Audits zur Geldwäscheprävention und Risikobewertung.</li></ul></div>
       </div>
       <div class="pm-zone">
         <button class="pm-btn" data-i="1">✍️ Pressemitteilung live schreiben</button>
@@ -188,40 +174,10 @@
 </div>
 
 <script>
-  var TIP = [{"titel": "KI-Definition als entscheidender Hebel der EU-KI-Verordnung – Wirtschaft fordert Präzisierung", "bereich": "Zertifizierung", "relevanz": "mittel", "timing": "6-12 Monate", "pr": "mittel"}, {"titel": "BDA-Positionspapier: EU-Rechtsetzung reformieren – weniger Belastungen, mehr Verhältnismäßigkeit", "bereich": "Sonstiges", "relevanz": "niedrig", "timing": "1-3 Jahre", "pr": "niedrig"}];
-  var tip = document.getElementById('tip');
-  function showTip(e, i) {
-    var d = TIP[i]; if (!d) return;
-    tip.innerHTML = '<b>' + d.titel + '</b>' +
-      d.bereich + ' · Relevanz: ' + d.relevanz + ' · Timing: ' + d.timing + ' · PR: ' + d.pr;
-    tip.hidden = false;
-    var x = (e.clientX || 0) + 14, y = (e.clientY || 0) + 14;
-    if (x > window.innerWidth - 280) x = window.innerWidth - 280;
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
-  }
-  function hideTip() { tip.hidden = true; }
-  document.querySelectorAll('.radar .bub').forEach(function(c) {
-    var i = +c.getAttribute('data-i');
-    c.addEventListener('mousemove', function(e) { showTip(e, i); });
-    c.addEventListener('mouseleave', hideTip);
-    c.addEventListener('focus', function(e) {
-      var r = c.getBoundingClientRect();
-      showTip({clientX: r.left, clientY: r.top}, i);
-    });
-    c.addEventListener('blur', hideTip);
-    function go() {
-      var el = document.getElementById('thema-' + i);
-      if (el) { el.scrollIntoView({behavior:'smooth', block:'center'});
-                el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
-    }
-    c.addEventListener('click', go);
-    c.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
-  });
-
   // --- Live-Pressemitteilung ---
   // Backend-Endpoint (hält den GLM-Key geheim). Wird beim Setup gesetzt.
   var PM_ENDPOINT = "";
-  var PM = [{"titel": "KI-Definition als entscheidender Hebel der EU-KI-Verordnung – Wirtschaft fordert Präzisierung", "source": "OECD", "date": "", "url": "https://www.gdv.de/resource/blob/178916/d777c5e3384119d263f6a83781b63c98/positionspapier-ki-data.pdf", "bereich": "Zertifizierung", "zusammenfassung": "In einem Positionspapier weist die deutsche Wirtschaft darauf hin, dass die KI-Definition im EU-KI-Act den Anwendungsbereich der künftigen Regulierung maßgeblich bestimmt. Eine zu weite Definition könnte unverhältnismäßige Anforderungen an Unternehmen stellen, eine zu enge Lücken lassen. Für Prüf- und Zertifizierungsorganisationen ist die genaue Abgrenzung zentral, da sie festlegt, welche Systeme einer Konformitätsbewertung unterliegen. Das Thema gewinnt an Dringlichkeit, da die Umsetzungsfristen der KI-Verordnung näher rücken.", "vorschlag_ueberschrift": "", "was_aendert_sich": ["Die EU-KI-Verordnung legt fest, welche KI-Systeme einer Konformitätsbewertung unterliegen", "Der Anwendungsbereich hängt maßgeblich von der zugrundegelegten KI-Definition ab"], "wer_betroffen": ["Entwickler und Betreiber von KI-Systemen in der EU", "Prüf- und Zertifizierungsstellen, die Konformitätsbewertungen durchführen"], "was_tun": ["Bestandsaufnahme eigener KI-Systeme gegen die KI-Act-Definition vornehmen", "Risikoklassifizierung der eingesetzten KI-Systeme durchführen"], "wo_tuev_nord_hilft": ["Konformitätsbewertung und Zertifizierung von KI-Systemen nach EU-KI-Verordnung", "Beratung zur Risikoklassifizierung und Compliance-Strategie"]}, {"titel": "BDA-Positionspapier: EU-Rechtsetzung reformieren – weniger Belastungen, mehr Verhältnismäßigkeit", "source": "EU-Kommission (Presscorner)", "date": "2026年2月3日", "url": "https://arbeitgeber.de/wp-content/uploads/bda-arbeitgeber-positionspapier-EU_Rechtsetzung_reformieren_bessere_Prozesse_weniger_Belastungen-2026_02.pdf", "bereich": "Sonstiges", "zusammenfassung": "Die BDA fordert in einem Positionspapier, dass neue EU-Rechtsakte künftig nur noch vorgeschlagen werden sollen, wenn sie verhältnismäßig und notwendig sind. Die Richtlinien über bessere Rechtsetzung sollen gestärkt werden, um Bürokratie und Belastungen für Unternehmen zu reduzieren. Dies betrifft auch den Bereich der Zertifizierung und Normung, wo unverhältnismäßige Anforderungen die Wirtschaft belasten können. Das Papier richtet sich an die EU-Institutionen für die laufende Legislaturperiode.", "vorschlag_ueberschrift": "", "was_aendert_sich": ["Neue EU-Rechtsakte sollen künftig auf Verhältnismäßigkeit und Notwendigkeit geprüft werden", "Bürokratieabbau und Entlastung der Wirtschaft werden politisch höher gewichtet"], "wer_betroffen": ["Unternehmen, die unter EU-Regulierung und Zertifizierungspflichten fallen", "Normungsgremien und Standardisierungsorganisationen"], "was_tun": ["Bestehende Zertifizierungspflichten auf Verhältnismäßigkeit prüfen", "Position in EU-Konsultationen zu neuen Rechtsakten einbringen"], "wo_tuev_nord_hilft": ["Effizienzprüfung bestehender Compliance- und Zertifizierungsprozesse", "Unterstützung bei der Einordnung neuer regulatorischer Anforderungen"]}];
+  var PM = [{"titel": "KI-Definition als zentraler Hebel der EU-KI-Regulierung – GDV-Positionspapier", "source": "OECD (via GDV)", "date": "", "url": "https://www.gdv.de/resource/blob/178916/d777c5e3384119d263f6a83781b63c98/positionspapier-ki-data.pdf", "bereich": "Zertifizierung", "zusammenfassung": "Der GDV hat ein Positionspapier zur KI-Definition im Rahmen der EU-KI-Verordnung veröffentlicht. Die Wirtschaft betont, dass die KI-Definition den Anwendungsbereich der künftigen Regulierung bestimmt und für die Praxis entscheidend ist. Die EU-KI-Verordnung stuft KI-Systeme nach Risikoklassen ein und verlangt für hochriskante Systeme Konformitätsbewertungen durch unabhängige Prüfstellen. Gerade jetzt, da die Implementierungsphase läuft, ist die genaue Abgrenzung, was als KI-System gilt, zentral für alle Unternehmen, die KI einsetzen oder entwickeln.", "vorschlag_ueberschrift": "KI-Verordnung kommt: Wer jetzt seine KI-Systeme nicht prüfen lässt, riskiert Marktverlust", "was_aendert_sich": ["EU-KI-Verordnung definiert verbindlich, was als KI-System gilt und welche Risikoklassen gelten.", "Hochriskante KI-Systeme benötigen eine Konformitätsbewertung durch eine benannte Stelle.", "Stufenweises Inkrafttreten ab 2025/2026 setzt Unternehmen unter Zeitdruck."], "wer_betroffen": ["Hersteller und Betreiber von KI-Systemen in regulierten Bereichen wie MedTech, Automobil, KRITIS.", "Unternehmen, die KI in sicherheitsrelevanten Anwendungen einsetzen."], "was_tun": ["Bestandsaufnahme: Welche KI-Systeme fallen unter welche Risikoklasse?", "Konformitätsbewertung für hochriskante Systeme frühzeitig einleiten.", "Interne KI-Governance und Risikomanagement aufbauen."], "wo_tuev_nord_hilft": ["Konformitätsbewertung hochriskanter KI-Systeme als benannte Stelle.", "Zertifizierung von KI-Managementsystemen nach ISO/IEC 42001.", "Beratung zur Einordnung von KI-Systemen in die Risikoklassen der EU-Verordnung."]}, {"titel": "AMLA konsultiert Entwürfe für AML-Leitlinien und technische Regulierungsstandards", "source": "ISO (via WPK)", "date": "2026年4月20日", "url": "https://www.wpk.de/neu/konsultationen-der-amla-zum-entwurf-einer-leitlinie-und-eines-technischen-regulierungsstandards/", "bereich": "KRITIS", "zusammenfassung": "Die neue EU-Anti-Geldwäsche-Behörde (AMLA) hat Entwürfe für Leitlinien und technische Regulierungsstandards zur Konsultation gestellt. Diese konkretisieren die Anforderungen an Geldwäscheprävention und betreffen unter anderem Kriterien zur Bestimmung von Mutterunternehmen sowie Regelungen zum Informationsaustausch. Die AMLA nimmt als neue EU-Behörde ihre Arbeit auf und schafft erstmals einen harmonisierten Rahmen für die AML-Aufsicht in Europa. Für verpflichtete Unternehmen bedeutet dies schärfere und vereinheitlichte Compliance-Vorgaben.", "vorschlag_ueberschrift": "", "was_aendert_sich": ["Neue EU-Behörde AMLA erlässt erstmals unionweit geltende AML-Leitlinien.", "Technische Regulierungsstandards konkretisieren Meldepflichten und Informationsaustausch."], "wer_betroffen": ["Banken, Finanzinstitute und weitere verpflichtete Unternehmen nach GwG.", "Konzerne mit komplexen Mutter-Tochter-Strukturen im Geltungsbereich."], "was_tun": ["Konsultationsergebnisse verfolgen und eigene Stellungnahme prüfen.", "Bestehende AML-Compliance-Systeme auf neue Anforderungen vorbereiten."], "wo_tuev_nord_hilft": ["Prüfung und Zertifizierung von Compliance-Management-Systemen.", "Audits zur Geldwäscheprävention und Risikobewertung."]}];
 
   document.querySelectorAll('.pm-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
