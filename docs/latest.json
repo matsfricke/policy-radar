@@ -1,294 +1,302 @@
 {
-  "generated_at": "2026-07-13T11:03:16.199819+00:00",
-  "hinweis": "8 relevante Themen identifiziert, davon 2 mit sehr hoher und 5 mit hoher Relevanz – Schwerpunkte bei Normen-Updates (ISO 14001/9001), MedTech-Leitlinien und ESG-Reporting",
+  "generated_at": "2026-07-13T11:22:47.422098+00:00",
+  "hinweis": "8 relevante Themen identifiziert, davon 2 mit sehr hoher und 4 mit hoher Relevanz",
   "themen": [
     {
-      "titel": "ISO 14001:2026 veröffentlicht – aktualisierte Norm für Umweltmanagementsysteme",
+      "titel": "ISO 14001:2026 veröffentlicht – überarbeitete Norm für Umweltmanagementsysteme",
       "source": "ISO",
       "date": "Apr 15, 2026",
       "url": "https://www.iso.org/news/2026/04/iso-14001-2026-published",
       "bereich": "Zertifizierung",
       "relevanz": "sehr hoch",
-      "relevanz_begruendung": "ISO 14001 ist eine der meistzertifizierten Normen weltweit; zehntausende TÜV-NORD-Kunden müssen auf die neue Edition umstellen.",
-      "timing_bucket": "6-12 Monate",
-      "timing_text": "Norm ist veröffentlicht; Übergangsfrist für Rezertifizierungen typischerweise 3 Jahre ab Veröffentlichung.",
+      "relevanz_begruendung": "ISO 14001 ist eine der Kernnormen im Zertifizierungsgeschäft von TÜV NORD – die Neuausgabe löst unmittelbar Übergangsaudits bei tausenden Kunden aus.",
+      "timing_bucket": "jetzt",
+      "timing_text": "Norm ist veröffentlicht; Übergangsfrist beginnt sofort, typischerweise 3 Jahre für Migration.",
       "pr_potenzial": "hoch",
-      "zusammenfassung": "Die ISO hat die überarbeitete Edition 2026 der ISO 14001 veröffentlicht. Die neue Version erweitert den Katalog relevanter Umweltbedingungen um Aspekte wie Biodiversität, Ökosysteme und Ressourcenverfügbarkeit und schärft die Anforderungen an Klarheit, Anwendbarkeit und Wirkung. Die Norm bleibt ein bewährtes Rahmenwerk, wird aber an heutige Erwartungen an ökologische Verantwortung angepasst. Für zertifizierte Organisationen bedeutet dies, dass bestehende Managementsysteme überprüft und angepasst werden müssen.",
-      "vorschlag_ueberschrift": "ISO 14001:2026 ist da – was zertifizierte Unternehmen jetzt für ihre Umweltmanagement-Zertifizierung tun müssen",
-      "kernaussage": "Die neue ISO 14001:2026 erweitert den Umweltbegriff und fordert konkrete Anpassungen in bestehenden Managementsystemen – Übergangsplanung beginnt jetzt.",
+      "zusammenfassung": "Die ISO hat im April 2026 die überarbeitete Ausgabe der weltweit führenden Norm für Umweltmanagementsysteme veröffentlicht. Die Neuausgabe baut auf dem bewährten Rahmen auf, verbessert jedoch Klarheit, Anwendbarkeit und Wirksamkeit der Anforderungen. Die Revision reagiert auf gestiegene Erwartungen an die ökologische Performance von Unternehmen und an die strategische Integration des Umweltmanagements. Für zertifizierte Organisationen beginnt nun die Übergangsfrist, innerhalb derer sie auf das neue Normen-Dokument migrieren müssen.",
+      "vorschlag_ueberschrift": "Neue ISO 14001:2026 ist da – drei Dinge, die Umweltzertifikate jetzt leisten müssen",
+      "kernaussage": "Die neue ISO 14001:2026 setzt höhere Maßstäbe für Umweltmanagementsysteme – Übergangsaudits stehen unmittelbar an.",
       "was_aendert_sich": [
-        "Erweiterung der betrachteten Umweltbedingungen um Biodiversität, Ökosysteme und Ressourcenverfügbarkeit",
-        "Höhere Anforderungen an Klarheit, Anwendbarkeit und Messbarkeit der Umweltziele",
-        "Neue Edition ersetzt ISO 14001:2015 nach Ablauf der Übergangsfrist"
+        "Neue Ausgabe mit geschärften Anforderungen an Umweltmanagementsysteme veröffentlicht",
+        "Erhöhte Erwartungen an ökologische Performance und strategische Integration",
+        "Verbesserte Klarheit und Anwendbarkeit der Norm"
       ],
       "wer_betroffen": [
         "Alle nach ISO 14001:2015 zertifizierten Organisationen",
-        "Umweltbeauftragte und Management-Vertreter in Industrie und Dienstleistung",
-        "Multinationale Konzerne mit gruppenweiten EMS-Zertifizierungen"
+        "Umweltmanagement-Beauftragte und Auditoren",
+        "Unternehmen mit integrierten Managementsystemen"
       ],
       "was_tun": [
-        "Gap-Analyse zwischen bestehendem System und den neuen Anforderungen durchführen",
-        "Umfeldanalyse um Biodiversitäts- und Ressourcenaspekte erweitern",
-        "Übergangszeitplan für Rezertifizierung nach ISO 14001:2026 erstellen"
+        "Änderungen zwischen 2015er und 2026er Ausgabe analysieren",
+        "Übergangszeitplan erstellen und interne Audits anpassen",
+        "Dokumentation und Prozesse auf neue Anforderungen aktualisieren"
       ],
       "wo_tuev_nord_hilft": [
-        "Gap-Analyse und Schulung zu den Änderungen der ISO 14001:2026",
-        "Begleitung der Umstellung und Rezertifizierung nach der neuen Norm",
-        "Integration mit weiteren Managementsystem-Normen (z. B. ISO 9001, ISO 50001)"
+        "Durchführung von Übergangsaudits auf ISO 14001:2026",
+        "Gap-Analysen und Readiness-Assessments",
+        "Schulungen zu den neuen Normenanforderungen"
       ],
-      "chart": null
+      "chart": null,
+      "pressemitteilung": "Neue ISO 14001:2026 veröffentlicht: Höhere Anforderungen an Umweltmanagementsysteme\nTÜV NORD GROUP unterstützt zertifizierte Organisationen bei der fristgerechten Migration zur überarbeiteten Norm\n\nDie Internationale Organisation für Normung (ISO) hat im April 2026 die überarbeitete Ausgabe der ISO 14001 veröffentlicht. Die weltweit führende Norm für Umweltmanagementsysteme baut auf dem bewährten Rahmen der Vorgängerversion auf, schärft jedoch die Anforderungen an Klarheit, Anwendbarkeit und Wirksamkeit. Die Neuausgabe reagiert auf die gestiegenen Erwartungen an die ökologische Performance von Unternehmen sowie an die strategische Integration des Umweltmanagements in die Geschäftsprozesse. Für alle nach ISO 14001:2015 zertifizierten Organisationen beginnt nun die Übergangsfrist, innerhalb derer sie auf das neue Normen-Dokument migrieren müssen.\n\nDie Revision der Norm bringt wesentliche Anpassungen mit sich. Im Fokus stehen eine erhöhte Erwartung an die ökologische Leistung sowie eine stärkere strategische Einbindung des Umweltmanagements. „Die aktualisierte ISO 14001 stellt sicher, dass Umweltmanagementsysteme den aktuellen ökologischen und ökonomischen Herausforderungen gerecht werden. Unternehmen müssen nun ihre Systeme nicht nur anpassen, sondern auch die Wirksamkeit ihrer Maßnahmen nachweisen“, erklärt [Name, Funktion], Experte für Umweltmanagement bei der TÜV NORD GROUP.\n\nVon den Änderungen sind alle nach der Ausgabe von 2015 zertifizierten Organisationen, Umweltmanagement-Beauftragte, Auditoren sowie Unternehmen mit integrierten Managementsystemen betroffen. Betroffene Unternehmen sollten zeitnah die Änderungen zwischen der 2015er und der 2026er Ausgabe analysieren. Es empfiehlt sich, einen Übergangszeitplan zu erstellen, interne Audits an die neuen Vorgaben anzupassen sowie die Dokumentation und die internen Prozesse zu aktualisieren.\n\nDie TÜV NORD GROUP unterstützt Organisationen bei der Umstellung auf das neue Regelwerk. Das Dienstleistungsportfolio umfasst die Durchführung von Übergangsaudits auf die ISO 14001:2026, Gap-Analysen und Readiness-Assessments zur Ermittlung des individuellen Handlungsbedarfs sowie Schulungen zu den neuen Normenanforderungen. Unternehmen wird geraten, frühzeitig Kontakt mit ihrem Zertifizierungspartner aufzunehmen, um die fristgerechte Migration ihres Umweltmanagementsystems sicherzustellen.\n\nÜber TÜV NORD\nDie TÜV NORD GROUP ist mit mehr als 10.000 Mitarbeitenden einer der großen technischen Dienstleister in Deutschland. Sie ist in den Bereichen Beratung, Prüfung, Klassifikation, Zertifizierung und Ausbildung/Weiterbildung national und international tätig. Der Sitz des Unternehmens ist Hannover."
     },
     {
-      "titel": "ISO 9001:2026 – Revision der weltweit wichtigsten Qualitätsmanagement-Norm steht bevor",
+      "titel": "ISO 9001-Revision: Ablösung von ISO 9001:2015 für September 2026 erwartet",
       "source": "ISO",
       "date": "",
       "url": "https://www.iso.org/standard/88464.html",
       "bereich": "Zertifizierung",
       "relevanz": "sehr hoch",
-      "relevanz_begruendung": "ISO 9001 ist die meistzertifizierte Norm im TÜV-NORD-Portfolio; die Revision betrifft nahezu alle Industriekunden.",
-      "timing_bucket": "6-12 Monate",
-      "timing_text": "Veröffentlichung der überarbeiteten Norm wird für September 2026 erwartet; Übergangsfrist voraussichtlich 3 Jahre.",
-      "pr_potenzial": "hoch",
-      "zusammenfassung": "Die überarbeitete ISO 9001 soll im September 2026 die bisherige Version ISO 9001:2015 ablösen. Die Revision zielt darauf ab, die Norm an moderne Geschäftsanforderungen und Stakeholder-Erwartungen anzupassen und die Relevanz für heutige Geschäftsmodelle zu sichern. Details zu den konkreten Änderungen werden mit der Veröffentlichung erwartet. Für Millionen zertifizierter Organisationen weltweit beginnt damit die Phase der Vorbereitung auf die Umstellung.",
-      "vorschlag_ueberschrift": "ISO 9001:2026 kommt im September – wie sich Unternehmen jetzt auf die neue Qualitätsmanagement-Norm vorbereiten",
-      "kernaussage": "Die meistzertifizierte Norm der Welt wird grundlegend überarbeitet – Organisationen sollten sich frühzeitig auf die Übergangsphase einstellen.",
-      "was_aendert_sich": [
-        "Ablösung von ISO 9001:2015 durch die neue Edition im September 2026",
-        "Anpassung an moderne Geschäftsanforderungen und veränderte Stakeholder-Erwartungen",
-        "Voraussichtlich neue Schwerpunkte bei digitalen Prozessen und Risikomanagement"
-      ],
-      "wer_betroffen": [
-        "Alle nach ISO 9001:2015 zertifizierten Unternehmen und Organisationen",
-        "Qualitätsmanagement-Beauftragte und Geschäftsführungen",
-        "Lieferanten in zertifizierten Wertschöpfungsketten"
-      ],
-      "was_tun": [
-        "Informationsbeschaffung über die geplanten Änderungen sobald der Final Draft vorliegt",
-        "Bestehende QM-Dokumentation auf potenzielle Änderungsfelder prüfen",
-        "Schulungs- und Umstellungsplan für das QM-Team aufstellen"
-      ],
-      "wo_tuev_nord_hilft": [
-        "Frühinformation und Schulung zu den Änderungen der ISO 9001:2026",
-        "Gap-Analyse und Umstellungsberatung für bestehende Zertifikate",
-        "Rezertifizierung und Integration mit weiteren Managementsystem-Normen"
-      ],
-      "chart": null
-    },
-    {
-      "titel": "EU-Kommission veröffentlicht Delegated Act zu überarbeiteten ESRS",
-      "source": "EFRAG",
-      "date": "Jul 3, 2026",
-      "url": "https://www.efrag.org/en/news-and-calendar/news/european-commission-publishes-delegated-act-on-revised-esrs-and-voluntary-sustainability-reporting",
-      "bereich": "ESG",
-      "relevanz": "hoch",
-      "relevanz_begruendung": "Die überarbeiteten ESRS definieren verbindliche Nachhaltigkeitsberichtsanforderungen, die TÜV-NORD-Kunden assurance-leisten müssen.",
-      "timing_bucket": "6-12 Monate",
-      "timing_text": "Delegated Act ist veröffentlicht; Anwendungspflicht für berichtspflichtige Unternehmen ab nächstem Berichtszyklus.",
-      "pr_potenzial": "hoch",
-      "zusammenfassung": "Die Europäische Kommission hat den Delegated Act zu den überarbeiteten European Sustainability Reporting Standards (ESRS) sowie einem freiwilligen Berichtsstandard veröffentlicht. Die überarbeiteten Standards präzisieren und konsolidieren die bisherigen Anforderungen an die Nachhaltigkeitsberichterstattung nach CSRD. EFRAG hatte zudem seinen State of Play Report 2026 vorgelegt, der auf der Analyse von 900 geprüften Nachhaltigkeitsberichten basiert. Für Unternehmen bedeutet dies konkrete Vorgaben für die anstehenden Berichtszyklen.",
-      "vorschlag_ueberschrift": "Neue ESRS-Standards sind verabschiedet – was berichtspflichtige Unternehmen jetzt für ihre Nachhaltigkeitsberichterstattung tun müssen",
-      "kernaussage": "Die überarbeiteten ESRS sind verbindlich veröffentlicht – Unternehmen müssen ihre Berichterstattung zeitnah an die präzisierten Anforderungen anpassen.",
-      "was_aendert_sich": [
-        "Überarbeitete und konsolidierte ESRS-Anforderungen durch Delegated Act in Kraft gesetzt",
-        "Neuer freiwilliger Berichtsstandard für nicht-berichtspflichtige Unternehmen verfügbar",
-        "Präzisierungen auf Basis der EFRAG-Analyse von 900 geprüften Nachhaltigkeitsberichten"
-      ],
-      "wer_betroffen": [
-        "CSRD-berichtspflichtige Unternehmen mit ESRS-Anwendungspflicht",
-        "Konzernmutter von Nicht-EU-Unternehmen mit EU-Töchtern (Third-Country-ESRS)",
-        "Wirtschaftsprüfer und Assurance-Dienstleister für Nachhaltigkeitsberichte"
-      ],
-      "was_tun": [
-        "Änderungen gegenüber den bisherigen ESRS analysieren und Berichterstattung anpassen",
-        "Datenquellen und Prozesse für neue oder präzisierte Kennzahlen validieren",
-        "Assurance-Bereitschaft für die erweiterten Berichtsanforderungen herstellen"
-      ],
-      "wo_tuev_nord_hilft": [
-        "Assurance-Prüfung von Nachhaltigkeitsberichten nach den überarbeiteten ESRS",
-        "Gap-Analyse zwischen bisheriger und neuer Berichterstattung",
-        "Beratung zu Third-Country-ESRS für internationale Konzerne"
-      ],
-      "chart": null
-    },
-    {
-      "titel": "MDCG 2025-10: Neue Leitlinie zur Post-Market-Surveillance von Medizinprodukten und IVDs",
-      "source": "EU Medizinprodukte (DG Health)",
-      "date": "Dec 19, 2025",
-      "url": "https://health.ec.europa.eu/latest-updates/mdcg-2025-10-guidance-post-market-surveillance-medical-devices-and-vitro-diagnostic-medical-devices-2025-12-19_en",
-      "bereich": "MedTech",
-      "relevanz": "hoch",
-      "relevanz_begruendung": "Post-Market-Surveillance ist eine Kernpflicht für alle Medizinprodukte-Hersteller unter MDR/IVDR; TÜV NORD ist als Benannte Stelle direkt eingebunden.",
+      "relevanz_begruendung": "ISO 9001 ist die meistgenutzte Managementnorm weltweit und Kern des TÜV-NORD-Zertifizierungsgeschäfts – die Revision betrifft fast alle Kunden.",
       "timing_bucket": "jetzt",
-      "timing_text": "Leitlinie ist veröffentlicht und unmittelbar anwendbar; Umsetzung in bestehende PMS-Systeme erforderlich.",
+      "timing_text": "Veröffentlichung der revidierten Norm wird für September 2026 erwartet; Übergangsfrist folgt nach Publikation.",
       "pr_potenzial": "hoch",
-      "zusammenfassung": "Die Medical Device Coordination Group (MDCG) hat im Dezember 2025 die Leitlinie MDCG 2025-10 zur Post-Market-Surveillance (PMS) von Medizinprodukten und In-vitro-Diagnostika veröffentlicht. Das Dokument konkretisiert die Anforderungen der MDR (EU 2017/745) und IVDR (EU 2017/746) an die Überwachung nach dem Inverkehrbringen. Es adressiert sowohl die systematische Erfassung von Sicherheitsinformationen als auch die regelmäßige Aktualisierung der klinischen Bewertung. Hersteller müssen ihre PMS-Systeme an den neuen Leitfaden ausrichten.",
-      "vorschlag_ueberschrift": "Neue MDCG-Leitlinie zur Post-Market-Surveillance – was MedTech-Hersteller jetzt in ihren PMS-Systemen anpassen müssen",
-      "kernaussage": "Die neue MDCG 2025-10 konkretisiert PMS-Pflichten unter MDR/IVDR – Hersteller müssen ihre Überwachungssysteme zeitnah anpassen.",
+      "zusammenfassung": "Die nächste Revision der ISO 9001 soll im September 2026 die bisherige Ausgabe von 2015 ablösen. Die Überarbeitung stellt sicher, dass die Norm aktuell bleibt und moderne Geschäftsanforderungen sowie Stakeholder-Erwartungen adressiert. Als weltweit meistgenutzte Managementsystemnorm betrifft die Änderung über eine Million zertifizierte Organisationen. Unternehmen müssen sich frühzeitig auf die neuen Anforderungen und die anstehende Übergangsphase einstellen.",
+      "vorschlag_ueberschrift": "ISO 9001 vor Revision: Was Qualitätsmanager jetzt für die nächste Zertifizierungsrunde vorbereiten müssen",
+      "kernaussage": "Die ISO 9001-Revision kommt im September 2026 – Unternehmen müssen sich jetzt auf die Übergangsphase vorbereiten.",
       "was_aendert_sich": [
-        "Konkretisierung der PMS-Anforderungen unter MDR und IVDR durch MDCG 2025-10",
-        "Präzisierung der systematischen Erfassung und Auswertung von Sicherheitsinformationen",
-        "Erwartete Verschärfung der Anforderungen an regelmäßige klinische Bewertungs-Updates"
+        "ISO 9001:2015 soll im September 2026 durch revidierte Fassung abgelöst werden",
+        "Moderne Geschäftsanforderungen und Stakeholder-Erwartungen werden adressiert",
+        "Übergangsfrist für bestehende Zertifikate wird nach Veröffentlichung festgelegt"
       ],
       "wer_betroffen": [
-        "Hersteller von Medizinprodukten und IVDs unter MDR/IVDR",
-        "Qualitätsmanagement- und Regulatory-Affairs-Verantwortliche in der MedTech-Branche",
-        "Benannte Stellen bei der Überprüfung von PMS-Systemen"
+        "Alle nach ISO 9001:2015 zertifizierten Organisationen",
+        "Qualitätsmanagement-Beauftragte und Auditoren",
+        "Unternehmen mit integrierten Managementsystemen"
       ],
       "was_tun": [
-        "Bestehendes PMS-System gegen die neue Leitlinie MDCG 2025-10 benchmarken",
-        "PMS-Plan und PMCF-Aktivitäten an die konkretisierten Erwartungen anpassen",
-        "Dokumentation und Meldeprozesse für Sicherheitsinformationen validieren"
+        "Veröffentlichung der revidierten Norm im September 2026 aktiv verfolgen",
+        "Frühzeitige Gap-Analyse zwischen alter und neuer Norm durchführen",
+        "Übergangsplan für Rezertifizierung erstellen"
       ],
       "wo_tuev_nord_hilft": [
-        "Auditierung und Bewertung von PMS-Systemen nach MDCG 2025-10",
-        "Beratung zur Anpassung von PMS-Plänen und PMCF-Strategien",
-        "Schulung von Regulatory-Affairs-Teams zu den neuen Anforderungen"
+        "Übergangsaudits und Rezertifizierung nach neuer ISO 9001",
+        "Gap-Assessments und Readiness-Checks",
+        "Schulungsangebote zu den geänderten Anforderungen"
       ],
-      "chart": null
+      "chart": null,
+      "pressemitteilung": "ISO 9001 vor Revision: Was Qualitätsmanager jetzt für die nächste Zertifizierungsrunde vorbereiten müssen\nAblösung der Ausgabe von 2015 wird für September 2026 erwartet\n\nDie Internationale Organisation für Normung (ISO) plant für September 2026 die Veröffentlichung der revidierten Fassung der ISO 9001, welche die bisherige Ausgabe von 2015 ablösen soll. Als weltweit meistgenutzte Managementsystemnorm betrifft diese Überarbeitung mehr als eine Million zertifizierte Organisationen. Die Neufassung stellt sicher, dass die Norm aktuelle Geschäftsanforderungen und die Erwartungen der Stakeholder weiterhin verlässlich abbildet.\n\nVon der anstehenden Revision sind alle nach ISO 9001:2015 zertifizierten Organisationen sowie deren Qualitätsmanagement-Beauftragte und Auditoren betroffen. Auch Unternehmen mit integrierten Managementsystemen müssen sich auf Anpassungen einstellen. Eine verbindliche Übergangsfrist für bestehende Zertifikate wird voraussichtlich zeitgleich mit der Veröffentlichung der neuen Norm festgelegt.\n\n„Ein frühzeitiges Engagement mit den geplanten Normänderungen ist für Unternehmen essenziell, um Zertifizierungszyklen nicht zu gefährden“, erklärt [Name, Funktion] bei der TÜV NORD GROUP. „Organisationen sollten die Entwicklungen aktiv verfolgen und bereits vor der offiziellen Veröffentlichung erste strategische Weichenstellungen prüfen.“\n\nUm den Übergang reibungslos zu gestalten, empfiehlt sich die zeitnahe Durchführung einer Gap-Analyse zwischen der bisherigen und der künftigen Normfassung. Darauf aufbauend ist ein strukturierter Übergangsplan für die anstehende Rezertifizierung zu erstellen. Die TÜV NORD GROUP unterstützt betroffene Unternehmen bei diesem Prozess mit fundierten Gap-Assessments und Readiness-Checks. Darüber hinaus bietet der Zertifizierungsdienstleister passgenaue Schulungen zu den geänderten Anforderungen sowie die Begleitung durch Übergangsaudits und Rezertifizierungen nach der neuen ISO 9001 an.\n\nUnternehmen wird geraten, sich ab sofort bei ihrem Zertifizierungspartner über den aktuellen Stand der Revision zu informieren und erste Termine für Vorbereitungs-Assessments zu planen.\n\nÜber TÜV NORD:\n[Platzhalter für kurze Unternehmensbeschreibung der TÜV NORD GROUP]"
     },
     {
-      "titel": "MDCG 2021-24 Rev.1: Aktualisierte Klassifizierungsleitlinie für Medizinprodukte (April 2026)",
+      "titel": "MDCG 2021-24 Rev.1: Aktualisierte Leitlinie zur Klassifizierung von Medizinprodukten",
       "source": "EU Medizinprodukte (DG Health)",
       "date": "Apr 20, 2026",
       "url": "https://health.ec.europa.eu/latest-updates/update-mdcg-2021-24-rev1-guidance-classification-medical-devices-april-2026-2026-04-20_en",
       "bereich": "MedTech",
       "relevanz": "hoch",
-      "relevanz_begruendung": "Die Klassifizierung bestimmt den Prüfaufwand und das Konformitätsbewertungsverfahren – eine aktualisierte Leitlinie betrifft alle MDR-Hersteller direkt.",
+      "relevanz_begruendung": "Als Benannte Stelle ist TÜV NORD direkt von MDR-Klassifizierungsleitlinien betroffen – Hersteller müssen Portfolios neu bewerten.",
       "timing_bucket": "jetzt",
-      "timing_text": "Überarbeitete Leitlinie ist im April 2026 veröffentlicht und unmittelbar relevant für Klassifizierungsentscheidungen.",
-      "pr_potenzial": "mittel",
-      "zusammenfassung": "Die MDCG hat im April 2026 die überarbeitete Version Rev.1 der Klassifizierungsleitlinie MDCG 2021-24 für Medizinprodukte veröffentlicht. Das Dokument konkretisiert das risikobasierte Klassifizierungssystem der MDR, das die Verletzlichkeit des menschlichen Körpers berücksichtigt. Die Überarbeitung liefert zusätzliche Klarstellung bei Grenzfällen und neuen Produktkategorien. Hersteller müssen prüfen, ob ihre Klassifizierungsentscheidungen noch mit der aktualisierten Leitlinie konform sind.",
-      "vorschlag_ueberschrift": "",
-      "kernaussage": "Die aktualisierte Klassifizierungsleitlinie MDCG 2021-24 Rev.1 liefert neue Klarstellungen – Hersteller müssen ihre Produktklassifizierungen überprüfen.",
+      "timing_text": "Leitlinie im April 2026 veröffentlicht; Hersteller müssen Klassifizierungen zeitnah überprüfen.",
+      "pr_potenzial": "hoch",
+      "zusammenfassung": "Im April 2026 hat die Medical Device Coordination Group die überarbeitete Leitlinie zur Klassifizierung von Medizinprodukten unter der MDR veröffentlicht. Das Dokument konkretisiert das risikobasierte Klassifizierungssystem und berücksichtigt die Vulnerabilität des menschlichen Körpers. Die Aktualisierung ist Teil der fortlaufenden Guidance-Aktualisierungen zur Unterstützung der MDR-Implementierung. Hersteller müssen ihre Produktportfolios anhand der aktualisierten Leitlinie neu bewerten.",
+      "vorschlag_ueberschrift": "Aktualisierte MDR-Klassifizierungsleitlinie: Medizinprodukte-Hersteller müssen Portfolios jetzt neu prüfen",
+      "kernaussage": "Die aktualisierte MDR-Klassifizierungsleitlinie erfordert eine Neubewertung von Medizinprodukte-Portfolios.",
       "was_aendert_sich": [
-        "Überarbeitete Klarstellungen zur risikobasierten Klassifizierung von Medizinprodukten unter MDR",
-        "Zusätzliche Guidance bei Grenzfällen und neuen Produktkategorien",
-        "Mögliche Auswirkungen auf den erforderlichen Konformitätsbewertungspfad einzelner Produkte"
+        "Überarbeitete Leitlinie zur Klassifizierung von Medizinprodukten unter MDR veröffentlicht",
+        "Risikobasiertes Klassifizierungssystem weiter konkretisiert",
+        "Klarstellungen zu Klassifizierungsregeln und Grenzfällen"
       ],
       "wer_betroffen": [
-        "Hersteller von Medizinprodukten, die unter die MDR fallen",
-        "Regulatory-Affairs-Verantwortliche bei Klassifizierungsentscheidungen",
-        "Benannte Stellen bei der Bewertung der Klassifizierung"
+        "Hersteller von Medizinprodukten",
+        "Benannte Stellen und Konformitätsbewerter",
+        "Importeure und Händler von Medizinprodukten"
       ],
       "was_tun": [
-        "Bestehende Produktklassifizierungen gegen die überarbeitete Leitlinie prüfen",
-        "Klassifizierungsdokumentation bei Bedarf aktualisieren",
-        "Auswirkungen auf den Konformitätsbewertungspfad evaluieren"
+        "Bestehendes Produktportfolio anhand der aktualisierten Leitlinie neu klassifizieren",
+        "Technische Dokumentation an angepasste Klassifizierung anpassen",
+        "Konformitätsbewertungsverfahren überprüfen"
       ],
       "wo_tuev_nord_hilft": [
-        "Bewertung und Bestätigung von Produktklassifizierungen nach MDCG 2021-24 Rev.1",
-        "Beratung bei Grenzfällen und komplexen Klassifizierungsfragen",
-        "Konformitätsbewertung entsprechend der ermittelten Klasse"
+        "Klassifizierungsverifikation unter MDR als Benannte Stelle",
+        "Konformitätsbewertungsverfahren",
+        "Review der technischen Dokumentation"
       ],
-      "chart": null
+      "chart": null,
+      "pressemitteilung": "Aktualisierte MDR-Klassifizierungsleitlinie: Medizinprodukte-Hersteller müssen Portfolios jetzt neu prüfen\n\nMDCG 2021-24 Rev.1 konkretisiert risikobasiertes System und stellt Klarstellungen für Grenzfälle zur Verfügung\n\nIm April 2026 hat die Medical Device Coordination Group (MDCG) die überarbeitete Leitlinie MDCG 2021-24 Rev.1 zur Klassifizierung von Medizinprodukten unter der Medical Device Regulation (MDR) veröffentlicht. Das Dokument konkretisiert das bestehende risikobasierte Klassifizierungssystem und berücksichtigt dabei verstärkt die Vulnerabilität des menschlichen Körpers. Die Aktualisierung ist Teil der fortlaufenden Guidance-Aktualisierungen zur Unterstützung der MDR-Implementierung. Hersteller sind nun gefordert, ihre Produktportfolios anhand der neuen Vorgaben zeitnah zu bewerten.\n\nDie überarbeitete Leitlinie liefert wesentliche Klarstellungen zu den Klassifizierungsregeln und behandelt spezifische Grenzfälle, die in der Praxis bisher zu Auslegungsunsicherheiten geführt haben. Von den Neuerungen sind sämtliche Akteure der Lieferkette betroffen. Neben den Herstellern von Medizinprodukten müssen auch Benannte Stellen und Konformitätsbewerter ihre Prüfprozesse anpassen. Ebenso sind Importeure und Händler verpflichtet, die Einhaltung der aktualisierten Vorgaben in ihren Vertriebsprozessen zu berücksichtigen.\n\n„Die Veröffentlichung der überarbeiteten MDCG-Leitlinie schafft für viele Hersteller dringend benötigte Klarheit bei komplexen Klassifizierungsfragen. Gleichzeitig bedeutet dies, dass bestehende Einstufungen nicht automatisch Bestand haben“, erklärt [Name, Funktion], Experte für regulatorische Angelegenheiten bei der TÜV NORD GROUP. „Unternehmen müssen nun proaktiv prüfen, ob sich die Klassifizierung ihrer Produkte ändert und welche Auswirkungen dies auf ihre Konformitätsbewertungsverfahren hat.“\n\nUnternehmen sollten umgehend ihr bestehendes Produktportfolio anhand der aktualisierten Leitlinie neu klassifizieren. Darauf aufbauend ist die technische Dokumentation an die gegebenenfalls angepasste Klassifizierung anzupassen und das Konformitätsbewertungsverfahren zu überprüfen. Als Benannte Stelle unterstützt die TÜV NORD GROUP Hersteller bei der Klassifizierungsverifikation unter der MDR. Darüber hinaus bietet das Unternehmen die Durchführung von Konformitätsbewertungsverfahren sowie das Review der technischen Dokumentation an, um den Übergangsprozess rechtssicher zu gestalten.\n\nÜber TÜV NORD\nDie TÜV NORD GROUP ist mit mehr als 10.000 Mitarbeitenden einer der großen technischen Dienstleister. Mit ihren Prüf-, Zertifizierungs- und Beratungsdienstleistungen steht der Konzern für Sicherheit und Qualität. Als Benannte Stelle für Medizinprodukte unterstützt die TÜV NORD GROUP Hersteller weltweit bei der Einhaltung regulatorischer Anforderungen."
     },
     {
-      "titel": "ENISA NIS360 2026: Cybersecurity-Maturity aller kritischen Sektoren bewertet",
+      "titel": "ENISA NIS360 2026: Sektorübergreifender Cybersecurity-Maturity-Vergleich",
       "source": "ENISA",
       "date": "May 28, 2026",
       "url": "https://www.enisa.europa.eu/enisa-nis360-2026",
       "bereich": "KRITIS",
       "relevanz": "hoch",
-      "relevanz_begruendung": "Der NIS360-Report liefert die Benchmark für Cybersecurity-Reife aller NIS2-Sektoren – TÜV-NORD-Kunden in KRITIS müssen sich positionieren.",
+      "relevanz_begruendung": "Der Bericht liefert Benchmarks für KRITIS-Betreiber – TÜV NORD kann Cybersecurity-Maturity-Assessments dagegen anbieten.",
       "timing_bucket": "jetzt",
-      "timing_text": "Report ist veröffentlicht; NIS2-Umsetzungsfrist in Deutschland läuft, konkrete Auditvorgaben stehen an.",
+      "timing_text": "Bericht im Mai 2026 veröffentlicht; Ergebnisse sind unmittelbar für NIS2-Umsetzung relevant.",
       "pr_potenzial": "hoch",
-      "zusammenfassung": "Die ENISA hat die dritte Ausgabe des NIS360-Reports veröffentlicht, der die Cybersecurity-Reife und Kritikalität aller als hochkritisch eingestuften Sektoren nach NIS2 bewertet. Der Report bietet einen sektorübergreifenden Vergleich und identifiziert Stärken und Schwachstellen in der Umsetzung der NIS2-Richtlinie. Zugleich hat ENISA technische Implementierungsleitlinien für verschiedene Entitätstypen in der digitalen Infrastruktur veröffentlicht. Für betroffene Unternehmen ist der Report ein Benchmark für den eigenen Sicherheitsstand.",
-      "vorschlag_ueberschrift": "ENISA NIS360 zeigt, wo KRITIS-Betreiber beim Cyberschutz stehen – wie Unternehmen ihre NIS2-Compliance jetzt nachweisen",
-      "kernaussage": "Der NIS360-Report 2026 liefert erstmals einen vollständigen Reife-Vergleich aller NIS2-Sektoren – Unternehmen können ihre Positionierung daran messen.",
+      "zusammenfassung": "Die ENISA hat im Mai 2026 die dritte Ausgabe des NIS360-Berichts veröffentlicht, der die Cybersecurity-Maturity und Kritikalität aller Sektoren von hoher Kritikalität bewertet. Der Report bietet erstmals einen sektorübergreifenden Vergleich der Umsetzung der NIS2-Richtlinie. Die Ergebnisse zeigen, wo Mitgliedsstaaten und Sektoren bei der Cybersecurity-Ausreifung stehen. Für KRITIS-Betreiber und wesentliche Einrichtungen liefert der Bericht wichtige Benchmarks für die eigene Positionierung.",
+      "vorschlag_ueberschrift": "ENISA NIS360 2026: Wo deutsche KRITIS-Betreiber im Cybersecurity-Vergleich stehen – und was jetzt zu tun ist",
+      "kernaussage": "Der ENISA NIS360-Bericht 2026 liefert erstmals sektorübergreifende Cybersecurity-Benchmarks für KRITIS.",
       "was_aendert_sich": [
-        "Dritte Ausgabe des NIS360-Reports mit sektorübergreifendem Maturity-Vergleich",
-        "Zusätzliche technische Implementierungsleitlinien der ENISA für NIS2-Entitäten",
-        "Erhöhter öffentlicher und regulatorischer Druck auf Sektoren mit niedriger Reife"
+        "Dritte Ausgabe des NIS360-Berichts mit sektorübergreifendem Maturity-Vergleich veröffentlicht",
+        "Cybersecurity-Maturity aller Sektoren hoher Kritikalität vergleichend bewertet",
+        "Benchmarking-Daten für NIS2-Umsetzung verfügbar"
       ],
       "wer_betroffen": [
-        "Betreiber Essentieller und Wichtiger Dienste nach NIS2",
-        "KRITIS-Betreiber in Deutschland nach BSIG/NIS2UmsuCG",
-        "IT-Sicherheitsbeauftragte und CISOs in kritischen Sektoren"
+        "Wesentliche und wichtige Einrichtungen nach NIS2",
+        "KRITIS-Betreiber in allen Sektoren hoher Kritikalität",
+        "Nationale Aufsichtsbehörden"
       ],
       "was_tun": [
-        "Eigene Cybersecurity-Reife gegen die NIS360-Benchmark einordnen",
-        "Technische Leitlinien der ENISA für die eigene Entitätskategorie umsetzen",
-        "Schwachstellen identifizieren und Maßnahmenplan priorisieren"
+        "Eigene Cybersecurity-Maturity mit Sektor-Benchmark vergleichen",
+        "Identifizierte Schwachstellen und Lücken adressieren",
+        "Sicherheitsmaßnahmen nach NIS2-Anforderungen priorisieren"
       ],
       "wo_tuev_nord_hilft": [
-        "NIS2-Compliance-Audits und Reifebewertung nach ENISA-NIS360-Benchmark",
-        "ISMS-Zertifizierung (ISO 27001) und KRITIS-Sicherheitsnachweise",
-        "Beratung zur Umsetzung der ENISA Technical Implementation Guidance"
+        "Cybersecurity-Maturity-Assessments nach NIS2",
+        "KRITIS-Sicherheitsberatung und Compliance-Audits",
+        "Gap-Analysen gegen Sektor-Benchmarks"
       ],
-      "chart": null
+      "chart": null,
+      "pressemitteilung": "ENISA NIS360 2026: Wo deutsche KRITIS-Betreiber im Cybersecurity-Vergleich stehen – und was jetzt zu tun ist\nSektorübergreifender Bericht der EU-Agentur liefert Benchmarks zur NIS2-Umsetzung\n\nDie Europäische Agentur für Cybersicherheit (ENISA) hat am 28. Mai 2026 die dritte Ausgabe des NIS360-Berichts veröffentlicht. Der Report bewertet erstmals sektorübergreifend die Cybersecurity-Maturity und Kritikalität aller Sektoren von hoher Kritikalität. Damit liefert die Studie wesentliche Benchmarks für die Umsetzung der NIS2-Richtlinie und zeigt auf, wo Mitgliedsstaaten und Sektoren in ihrer cybersecurity-spezifischen Ausreifung aktuell stehen. Für Betreiber kritischer Infrastrukturen (KRITIS) und wesentliche Einrichtungen bietet der Bericht eine fundierte Grundlage zur eigenen Positionierung im europäischen Vergleich.\n\nDie neuen Erkenntnisse des NIS360-Berichts adressieren insbesondere wesentliche und wichtige Einrichtungen nach NIS2 sowie KRITIS-Betreiber in allen Sektoren hoher Kritikalität. Auch nationale Aufsichtsbehörden profitieren von den vergleichenden Daten zur NIS2-Umsetzung. Anhand der Ergebnisse wird transparent, in welchen Bereichen Nachholbedarf besteht und welche Sicherheitsstandards bereits flächendeckend etabliert sind.\n\n„Der NIS360-Bericht der ENISA liefert deutschen KRITIS-Betreibern den dringend benötigten Spiegel der eigenen Cybersicherheits-Resilienz“, erklärt [Name, Funktion], Experte für Cybersicherheit bei der TÜV NORD GROUP. „Unternehmen müssen diese Benchmarks nun nutzen, um ihre Schutzmaßnahmen zu priorisieren und identifizierte Schwachstellen konsequent zu schließen.“\n\nWesentliche Einrichtungen sind nun gefordert, ihre eigene Cybersecurity-Maturity systematisch mit den Sektor-Benchmarks abzugleichen. Identifizierte Lücken sollten zeitnah adressiert und Sicherheitsmaßnahmen strikt nach den Vorgaben der NIS2-Richtlinie priorisiert werden. Die TÜV NORD GROUP unterstützt Betreiber auf diesem Weg durch fundierte Cybersecurity-Maturity-Assessments nach NIS2. Zudem bietet das Unternehmen gezielte KRITIS-Sicherheitsberatung und Compliance-Audits an. Durch Gap-Analysen gegen die aktuellen Sektor-Benchmarks können Organisationen ihre Defizite präzise bestimmen und die Compliance-Sicherheit nachhaltig stärken.\n\nÜber TÜV NORD:\nDie TÜV NORD GROUP ist mit mehr als 10.000 Mitarbeitenden einer der großen technischen Dienstleister in Deutschland. Sie unterstützt Unternehmen weltweit bei der Sicherheit, Qualität und Effizienz ihrer Prozesse und Anlagen. Im Bereich Cybersicherheit bietet der Konzern umfassende Dienstleistungen von der Beratung über Audits bis hin zur Zertifizierung nach internationalen Standards an."
     },
     {
-      "titel": "ISO startet öffentliche Konsultation zum ersten weltweiten Net-Zero-Standard",
+      "titel": "ISO startet Konsultation zur ersten internationalen Norm für Net-Zero-Ausrichtung",
       "source": "ISO",
       "date": "Jun 17, 2026",
       "url": "https://www.iso.org/news/2026/06/standard-for-net-zero-alignment",
       "bereich": "ESG",
       "relevanz": "hoch",
-      "relevanz_begruendung": "Ein ISO-Standard für Net-Zero-Alignment wird die Grundlage für verlässliche Klimaneutralitätsbehauptungen und entsprechende Zertifizierungen.",
-      "timing_bucket": "1-3 Jahre",
-      "timing_text": "Draft International Standard in 12-wöchiger Konsultation; finale Veröffentlichung voraussichtlich 2027.",
+      "relevanz_begruendung": "Eine ISO-Norm für Net Zero schafft die Grundlage für künftige Zertifizierungen – TÜV NORD kann sich als Verifizierungsstelle positionieren.",
+      "timing_bucket": "6-12 Monate",
+      "timing_text": "12-wöchige öffentliche Konsultation gestartet; Norm-Veröffentlichung in 12–18 Monaten erwartet.",
       "pr_potenzial": "hoch",
-      "zusammenfassung": "Die ISO hat den Draft International Standard (DIS) für den ersten weltweiten Standard zur Net-Zero-Ausrichtung zur öffentlichen Konsultation freigegeben. Die 12-wöchige Konsultationsphase richtet sich an die nationalen Mitgliedsorganisationen in über 170 Ländern. Der Standard soll eine global einheitliche Methodik für Net-Zero-Claims schaffen und damit Greenwashing eingrenzen. Für Unternehmen, die Klimaneutralität anstreben, entsteht damit erstmals eine verlässliche zertifizierbare Grundlage.",
-      "vorschlag_ueberschrift": "Erster ISO-Standard für Net Zero in der Konsultation – wie Unternehmen sich auf verlässliche Klimaneutralitäts-Zertifizierung vorbereiten",
-      "kernaussage": "Der erste weltweite ISO-Standard für Net-Zero-Ausrichtung ist in der Konsultation – Unternehmen können sich frühzeitig auf zertifizierbare Klimaneutralität vorbereiten.",
+      "zusammenfassung": "Die ISO hat am 17. Juni 2026 die öffentliche Konsultation zur weltweit ersten internationalen Norm für Net-Zero-Ausrichtung gestartet. Die 12-wöchige Konsultationsphase ermöglicht Stakeholdern, Kommentare zum Entwurf einzureichen. Die Norm wird eine global abgestimmte Methodik für Net-Zero-Verpflichtungen schaffen und damit die Grundlage für künftige Zertifizierungen legen. Unternehmen mit Klimazielen sollten den Entwicklungsprozess aktiv verfolgen und sich auf kommende Zertifizierungsanforderungen vorbereiten.",
+      "vorschlag_ueberschrift": "Erste ISO-Norm für Net Zero in der Konsultation: Was Unternehmen jetzt für künftige Zertifizierungen vorbereiten müssen",
+      "kernaussage": "Die erste ISO-Norm für Net Zero schafft die Grundlage für künftige Zertifizierungen von Klimazielen.",
       "was_aendert_sich": [
-        "Erster internationaler Standard für Net-Zero-Alignment entsteht",
-        "12-wöchige öffentliche Konsultation läuft in über 170 ISO-Mitgliedsländern",
-        "Künftige Grundlage für prüfbare und zertifizierbare Net-Zero-Claims"
+        "Öffentliche Konsultation zur ersten internationalen Norm für Net-Zero-Ausrichtung gestartet",
+        "12-wöchige Kommentierungsphase für Stakeholder eröffnet",
+        "Global abgestimmte Methodik für Net-Zero-Verpflichtungen in Entwicklung"
       ],
       "wer_betroffen": [
-        "Unternehmen mit Net-Zero- oder Klimaneutralitätszielen",
-        "Nachhaltigkeits- und Klimastrategen in Industrie und Dienstleistung",
-        "Zertifizierungsstellen und Assurance-Dienstleister im ESG-Bereich"
+        "Unternehmen mit Net-Zero-Verpflichtungen",
+        "Zertifizierungsstellen und Prüforganisationen",
+        "Organisationen mit freiwilligen oder verpflichtenden Klimazielen"
       ],
       "was_tun": [
-        "Draft-Standard während der Konsultationsphase prüfen und Feedback einbringen",
-        "Bestehende Net-Zero-Strategien auf Kompatibilität mit dem Draft vorabewerten",
-        "Interne Vorbereitung für künftige Zertifizierung initiieren"
+        "Konsultationsentwurf prüfen und Kommentare einreichen",
+        "Bestehende Klimastrategien mit entstehendem Standard abgleichen",
+        "Vorbereitung auf künftige Zertifizierungsanforderungen beginnen"
       ],
       "wo_tuev_nord_hilft": [
-        "Bewertung und Beratung zu Net-Zero-Strategien nach dem künftigen ISO-Standard",
-        "Validierung und Zertifizierung von Treibhausgasbilanzen (ISO 14064)",
-        "Begleitung der Umsetzung von Reduktionspfaden und Net-Zero-Claims"
+        "Verifikation von Net-Zero-Claims und Klimazielen",
+        "Beratung zur Ausrichtung an entstehendem ISO-Standard",
+        "Readiness-Assessments für künftige Zertifizierung"
       ],
-      "chart": null
+      "chart": null,
+      "pressemitteilung": "Erste ISO-Norm für Net Zero in der Konsultation: Was Unternehmen jetzt für künftige Zertifizierungen vorbereiten müssen\n\nTÜV NORD empfiehlt die frühzeitige Prüfung des Normenentwurfs und die Vorbereitung auf kommende Zertifizierungsanforderungen\n\nDie International Organization for Standardization (ISO) hat am 17. Juni 2026 die öffentliche Konsultation zur weltweit ersten internationalen Norm für Net-Zero-Ausrichtung gestartet. Die zwölfwöchige Kommentierungsphase gibt Stakeholdern die Möglichkeit, Feedback zum aktuellen Entwurf einzureichen. Ziel der Norm ist es, eine global abgestimmte Methodik für Net-Zero-Verpflichtungen zu schaffen und damit eine einheitliche Grundlage für künftige Zertifizierungen zu legen.\n\nVon dem neuen Standard sind insbesondere Unternehmen mit eigenen Net-Zero-Verpflichtungen, Zertifizierungsstellen sowie Organisationen mit freiwilligen oder regulatorisch vorgegebenen Klimazielen betroffen. Die Etablierung einer internationalen Methodik wird die Vergleichbarkeit und Nachvollziehbarkeit von Klimaversprechen erhöhen. Unternehmen sollten den Entwicklungsprozess daher aktiv verfolgen und ihre bestehenden Klimastrategien frühzeitig mit den Vorgaben des Entwurfs abgleichen.\n\n„Die neue ISO-Norm wird verbindliche Maßstäbe für Net-Zero-Aussagen setzen und die Transparenz bei Klimazielen erheblich erhöhen“, erklärt [Name, Funktion] bei der TÜV NORD GROUP. „Es ist für Unternehmen entscheidend, sich jetzt mit dem Entwurf auseinanderzusetzen, um künftige Zertifizierungsanforderungen fristgerecht erfüllen zu können.“\n\nDie TÜV NORD GROUP unterstützt betroffene Organisationen bei der Ausrichtung an dem entstehenden ISO-Standard. Das Dienstleistungsportfolio umfasst die Verifikation von Net-Zero-Claims und Klimazielen, die strategische Beratung zur Normenauslegung sowie sogenannte Readiness-Assessments. Mit diesen Vorbereitungsprüfungen können Unternehmen ihren aktuellen Stand bezüglich der künftigen Zertifizierungsanforderungen objektiv evaluieren. Betroffenen Organisationen ist zu raten, den Konsultationsentwurf zu prüfen, eigene Kommentare einzureichen und zeitnah mit der internen Vorbereitung zu beginnen.\n\nÜber TÜV NORD\nDie TÜV NORD GROUP ist ein weltweit tätiger Technologie-Dienstleister mit über 10.000 Mitarbeitenden. Die Gruppe bietet Beratungs-, Prüf- und Zertifizierungsdienstleistungen in den Bereichen Industrie, Mobilität, Bildung, Ressourcen und IT an."
     },
     {
-      "titel": "ISO 22000 in Überarbeitung – Working Group tagt im März 2026",
+      "titel": "EFRAG veröffentlicht ESRS-Umsetzungspraxis aus 900 geprüften Nachhaltigkeitsberichten",
+      "source": "EFRAG",
+      "date": "Apr 21, 2026",
+      "url": "https://www.efrag.org/sites/default/files/2026-05/efrag_update_april_2026.pdf",
+      "bereich": "ESG",
+      "relevanz": "hoch",
+      "relevanz_begruendung": "CSRD/ESRS-Assurance ist ein wachsendes Geschäftsfeld für TÜV NORD – die EFRAG-Auswertung liefert Praxisorientierung für Kunden.",
+      "timing_bucket": "jetzt",
+      "timing_text": "Auswertung und Knowledge Hub seit Frühjahr 2026 verfügbar; erste Berichtssaison läuft.",
+      "pr_potenzial": "hoch",
+      "zusammenfassung": "Der EFRAG hat im Rahmen seines Updates vom April 2026 Erkenntnisse zur Umsetzung der European Sustainability Reporting Standards (ESRS) veröffentlicht. Grundlage ist eine Auswertung von 900 geprüften Nachhaltigkeitsberichten, die nach den ESRS erstellt wurden. Parallel wurde der ESRS Knowledge Hub als Wissensplattform gestartet, und der VSME-Standard für freiwillige Nachhaltigkeitsberichterstattung von KMU wird weiterentwickelt. Die Erkenntnisse bieten Unternehmen konkrete Orientierung für die eigene Berichterstattung und Prüfung.",
+      "vorschlag_ueberschrift": "ESRS in der Praxis: Was die Auswertung von 900 Nachhaltigkeitsberichten für die eigene Berichterstattung bedeutet",
+      "kernaussage": "Die EFRAG-Auswertung von 900 ESRS-Berichten zeigt praktische Umsetzungsmuster und Handlungsbedarf.",
+      "was_aendert_sich": [
+        "EFRAG veröffentlicht Auswertung von 900 geprüften ESRS-Nachhaltigkeitsberichten",
+        "ESRS Knowledge Hub als zentrale Wissensplattform gestartet",
+        "VSME-Standard für freiwillige Nachhaltigkeitsberichterstattung von KMU in Entwicklung"
+      ],
+      "wer_betroffen": [
+        "Unternehmen im Geltungsbereich der CSRD",
+        "Prüfer von Nachhaltigkeitsberichten",
+        "Nicht-börsennotierte KMU mit Lieferkettenanforderungen"
+      ],
+      "was_tun": [
+        "Beobachtete Praxismuster und Fallstricke aus der EFRAG-Auswertung analysieren",
+        "Eigene Berichterstattung an ESRS-Anforderungen ausrichten",
+        "VSME-Standard als Option für freiwillige Berichterstattung prüfen"
+      ],
+      "wo_tuev_nord_hilft": [
+        "Assurance von Nachhaltigkeitsberichten nach ESRS",
+        "Readiness-Assessments für CSRD-Berichterstattung",
+        "Unterstützung bei VSME-Implementierung"
+      ],
+      "chart": null,
+      "pressemitteilung": "ESRS in der Praxis: Was die Auswertung von 900 Nachhaltigkeitsberichten für die eigene Berichterstattung bedeutet\nEFRAG-Update liefert Erkenntnisse zur Umsetzung der European Sustainability Reporting Standards und startet neuen Wissens-Hub\n\nDer EFRAG (European Financial Reporting Advisory Group) hat am 21. April 2026 eine umfassende Auswertung von 900 geprüften Nachhaltigkeitsberichten veröffentlicht. Die Analyse bietet Unternehmen im Geltungsbereich der Corporate Sustainability Reporting Directive (CSRD) sowie Wirtschaftsprüfern konkrete Orientierung für die praktische Umsetzung der European Sustainability Reporting Standards (ESRS). Ziel der Veröffentlichung ist es, Praxismuster und Fallstricke aufzuzeigen und die Qualität sowie Vergleichbarkeit der künftigen Nachhaltigkeitsberichterstattung zu verbessern.\n\nParallel zur Auswertung hat der EFRAG den ESRS Knowledge Hub als zentrale Wissensplattform gestartet. Zudem befindet sich der VSME-Standard für die freiwillige Nachhaltigkeitsberichterstattung von kleinen und mittleren Unternehmen (KMU) in der weiteren Entwicklung. Letzterer richtet sich insbesondere an nicht-börsennotierte KMU, die zunehmend mit Nachhaltigkeitsanforderungen aus Lieferketten konfrontiert sind. Die neuen Erkenntnisse und Tools bieten betroffenen Akteuren eine fundierte Basis, um die eigenen Berichtsprozesse zu validieren und an die regulatorischen Vorgaben anzupassen.\n\n„Die Auswertung des EFRAG liefert wertvolle empirische Daten, die Unternehmen nun nutzen sollten, um ihre Berichterstattung kritisch zu hinterfragen und frühzeitig anzupassen“, erklärt [Name, Funktion] bei der TÜV NORD GROUP. „Eine fundierte Analyse der beobachteten Fallstricke ist essenziell, um die ESRS-Anforderungen nicht nur formal, sondern inhaltlich stimmig zu erfüllen.“\n\nUnternehmen sollten die veröffentlichten Praxismuster zeitnah analysieren und ihre Berichterstattung entsprechend ausrichten. Nicht-börsennotierte KMU sollten zudem prüfen, ob der VSME-Standard eine sinnvolle Option für ihre freiwillige Berichterstattung darstellt. Die TÜV NORD GROUP unterstützt Unternehmen in allen Phasen der Nachhaltigkeitsberichterstattung. Das Leistungsspektrum umfasst die Assurance von Nachhaltigkeitsberichten nach ESRS, die Durchführung von Readiness-Assessments für die CSRD-Berichterstattung sowie die gezielte Beratung bei der Implementierung des VSME-Standards.\n\nÜber TÜV NORD\nDie TÜV NORD GROUP ist mit mehr als 10.000 Mitarbeitenden einer der großen technischen Dienstleister. Mit ihrem Beratungs-, Prüf- und Zertifizierungsgeschäft steht sie für Sicherheit, Qualität und Nachhaltigkeit."
+    },
+    {
+      "titel": "ENISA: Technische Implementierungsleitlinien zur NIS2-Richtlinie",
+      "source": "ENISA",
+      "date": "Jun 26, 2025",
+      "url": "https://www.enisa.europa.eu/publications/nis2-technical-implementation-guidance",
+      "bereich": "KRITIS",
+      "relevanz": "mittel",
+      "relevanz_begruendung": "Technische Guidance zur NIS2-Umsetzung ist relevant für TÜV-NORD-Kunden im KRITIS-Umfeld, jedoch bereits ein Jahr alt.",
+      "timing_bucket": "jetzt",
+      "timing_text": "Leitlinie seit Juni 2025 verfügbar; NIS2-Umsetzung in Mitgliedsstaaten läuft.",
+      "pr_potenzial": "mittel",
+      "zusammenfassung": "Die ENISA hat im Juni 2025 technische Implementierungsleitlinien zur NIS2-Richtlinie veröffentlicht. Der Bericht bietet konkrete technische Guidance für verschiedene Entitätstypen in der digitalen Infrastruktur. Ergänzt wird dies durch einen weiteren Bericht zu Cybersecurity-Rollen und -Fähigkeiten für wesentliche und wichtige Einrichtungen. Die Leitlinien sind ein zentrales Werkzeug für die praktische Umsetzung der NIS2-Anforderungen.",
+      "vorschlag_ueberschrift": "",
+      "kernaussage": "Die NIS2-Implementierungsleitlinien der ENISA geben konkrete technische Vorgaben für KRITIS-Entitäten.",
+      "was_aendert_sich": [
+        "Technische Implementierungsleitlinien zur NIS2-Richtlinie veröffentlicht",
+        "Spezifische Anforderungen für Entitäten der digitalen Infrastruktur konkretisiert",
+        "Bericht zu Cybersecurity-Rollen und -Fähigkeiten für NIS2-Entitäten ergänzt"
+      ],
+      "wer_betroffen": [
+        "Wesentliche und wichtige Einrichtungen nach NIS2",
+        "Betreiber digitaler Infrastrukturen",
+        "KRITIS-Betreiber"
+      ],
+      "was_tun": [
+        "Technische Leitlinien auf eigene Systeme und Prozesse anwenden",
+        "Bestehende Sicherheitsmaßnahmen gegen Guidance prüfen",
+        "Rollen und Fähigkeiten im Cybersecurity-Bereich evaluieren"
+      ],
+      "wo_tuev_nord_hilft": [
+        "NIS2-Compliance-Assessments",
+        "Technische Sicherheitsaudits nach ENISA-Guidance",
+        "Beratung zu Cybersecurity-Rollen und -Fähigkeiten"
+      ],
+      "chart": null,
+      "pressemitteilung": "ENISA veröffentlicht technische Leitlinien zur NIS2-Umsetzung\nTÜV NORD empfiehlt Betreibern digitaler Infrastrukturen die Überprüfung bestehender Sicherheitsmaßnahmen\n\nDie Europäische Agentur für Cybersicherheit (ENISA) hat am 26. Juni 2025 technische Implementierungsleitlinien zur NIS2-Richtlinie veröffentlicht. Der Bericht bietet Betreibern digitaler Infrastrukturen sowie wesentlichen und wichtigen Einrichtungen konkrete technische Vorgaben für die praktische Umsetzung der gesetzlichen Anforderungen. Ergänzt wird die Veröffentlichung durch einen weiteren Bericht zu Cybersecurity-Rollen und -Fähigkeiten, der den betroffenen Unternehmen als zentrales Werkzeug zur Stärkung ihrer Sicherheitsarchitektur dient.\n\nMit den neuen Leitlinien konkretisiert die ENISA die spezifischen technischen Anforderungen für verschiedene Entitätstypen innerhalb der digitalen Infrastruktur. Betroffen von diesen Präzisierungen sind insbesondere KRITIS-Betreiber sowie wesentliche und wichtige Einrichtungen gemäß NIS2. Für diese Akteure ist die Auseinandersetzung mit der neuen Guidance ein notwendiger Schritt, um die Vorgaben der Richtlinie technisch und organisatorisch nachweisbar zu erfüllen.\n\n„Die technischen Implementierungsleitlinien der ENISA geben betroffenen Unternehmen erstmals ein detailliertes Muster an die Hand, wie NIS2-Anforderungen in der IT-Praxis ausgestaltet werden sollten“, erklärt [Name, Funktion], Experte für Cybersicherheit bei der TÜV NORD GROUP. „Es ist nun entscheidend, dass die Betreiber diese Vorgaben systematisch auf ihre eigenen Systeme anwenden und ihre personellen Kapazitäten im Bereich Cybersecurity entsprechend evaluieren.“\n\nTÜV NORD empfiehlt betroffenen Unternehmen, die technischen Leitlinien zeitnah auf die eigenen Systeme und Prozesse anzuwenden und bestehende Sicherheitsmaßnahmen gegen die ENISA-Guidance abzugleichen. Zudem sollten die Rollen und Fähigkeiten im Cybersecurity-Bereich auf den Prüfstand gestellt werden. Um Unternehmen bei diesem Prozess zu unterstützen, bietet die TÜV NORD GROUP NIS2-Compliance-Assessments sowie technische Sicherheitsaudits auf Basis der aktuellen ENISA-Guidance an. Ergänzend beraten die Experten von TÜV NORD bei der Definition und Weiterentwicklung von Cybersecurity-Rollen und -Fähigkeiten, um die praktische Umsetzung der NIS2-Richtlinie rechtssicher zu gestalten.\n\nÜber TÜV NORD\nDie TÜV NORD GROUP ist mit mehr als 10.000 Mitarbeitenden einer der großen technischen Dienstleister in Deutschland und Europa. Das Unternehmen agiert weltweit und unterstützt Kunden bei der Sicherheit, Qualität und Effizienz ihrer technischen Systeme und Prozesse."
+    },
+    {
+      "titel": "ISO 22000-Revision: Arbeitsgruppe setzt nächsten Schritt",
       "source": "ISO",
       "date": "Mar 13, 2026",
       "url": "https://committee.iso.org/sites/tc34sc17/home/news/content-left-area/news-and-updates/news-march-2026.html",
       "bereich": "Food",
       "relevanz": "mittel",
-      "relevanz_begruendung": "ISO 22000 ist die internationale Norm für Lebensmittel-Sicherheitsmanagementsysteme; die Revision betrifft Lebensmittelhersteller und -zertifizierer.",
+      "relevanz_begruendung": "ISO 22000 ist relevant für TÜV-NORD-Kunden im Lebensmittelbereich, die Revision befindet sich jedoch noch in frühen Phasen.",
       "timing_bucket": "1-3 Jahre",
-      "timing_text": "Revision läuft; Veröffentlichung der neuen Edition voraussichtlich nicht vor 2027.",
+      "timing_text": "Revisionsprozess läuft seit März 2026; Veröffentlichung der revidierten Norm in 1–2 Jahren erwartet.",
       "pr_potenzial": "niedrig",
-      "zusammenfassung": "Die ISO-Arbeitsgruppe WG 8 hat am 4. März 2026 ein wichtiges Treffen zur laufenden Revision der ISO 22000 abgehalten. Die Norm für Lebensmittel-Sicherheitsmanagementsysteme wird aktualisiert, um an aktuelle Entwicklungen in der Lebensmittelsicherheit und regulatorische Änderungen angepasst zu werden. Der Prozess befindet sich in einem frühen bis mittleren Stadium. Für zertifizierte Unternehmen bedeutet dies, dass in den kommenden Jahren mit einer neuen Edition zu rechnen ist.",
+      "zusammenfassung": "Die Arbeitsgruppe WG 8 hat im März 2026 ein wichtiges Treffen zur laufenden Revision der ISO 22000 abgehalten. Die Norm für Managementsysteme für Lebensmittelsicherheit wird aktualisiert, um aktuellen Entwicklungen in der Lebensmittelindustrie Rechnung zu tragen. Der Revisionsprozess befindet sich noch in einer frühen Phase, erste Entwürfe werden erwartet. Zertifizierte Unternehmen sollten den Fortschritt verfolgen und sich auf künftige Änderungen einstellen.",
       "vorschlag_ueberschrift": "",
-      "kernaussage": "Die ISO 22000 wird überarbeitet – zertifizierte Lebensmittelunternehmen sollten den Revisionsprozess verfolgen.",
+      "kernaussage": "Die ISO 22000-Revision läuft – Lebensmittelunternehmen sollten den Prozess frühzeitig verfolgen.",
       "was_aendert_sich": [
-        "Revision der ISO 22000 läuft, Working Group tagt regelmäßig",
-        "Anpassung an aktuelle Entwicklungen in der Lebensmittelsicherheit zu erwarten",
-        "Neue Edition voraussichtlich nicht vor 2027"
+        "Revision der ISO 22000 für Lebensmittelsicherheitsmanagementsysteme läuft",
+        "Arbeitsgruppe WG 8 hat im März 2026 wichtigen Arbeitsschritt gesetzt",
+        "Aktualisierung reagiert auf Entwicklungen in der Lebensmittelindustrie"
       ],
       "wer_betroffen": [
-        "Nach ISO 22000 zertifizierte Lebensmittelhersteller und -verarbeiter",
-        "Lebensmittelsicherheits-Beauftragte und QM-Leiter in der Food-Branche",
-        "Zertifizierungsstellen für Lebensmittel-Sicherheitsmanagementsysteme"
+        "Nach ISO 22000 zertifizierte Unternehmen",
+        "Lebensmittelhersteller und -verarbeiter",
+        "Auditoren und Lebensmittel-Sicherheitsexperten"
       ],
       "was_tun": [
-        "Revisionsprozess über die ISO-Kommunikationskanäle verfolgen",
-        "Bestehendes FSMS auf Aktualisierungsbedarf im Auge behalten",
-        "Schulungsbedarf für die neue Edition frühzeitig planen"
+        "Revisionsfortschritt aktiv verfolgen",
+        "Aktuelle FSMS-Dokumentation für spätere Anpassungen bereithalten",
+        "Frühzeitige Informationsbeschaffung zu geplanten Änderungen"
       ],
       "wo_tuev_nord_hilft": [
-        "Information und Schulung zu den Änderungen der ISO 22000 bei Veröffentlichung",
-        "Zertifizierung von Lebensmittel-Sicherheitsmanagementsystemen",
-        "Integration mit weiteren Food- und Qualitätsstandards (z. B. IFS, BRC, FSSC 22000)"
+        "Lebensmittelsicherheits-Zertifizierung nach ISO 22000",
+        "Übergangsplanung bei Normenrevision",
+        "Schulungen zu aktualisierten Anforderungen"
       ],
-      "chart": null
+      "chart": null,
+      "pressemitteilung": "Revision der ISO 22000: Arbeitsgruppe setzt nächsten Schritt\nTÜV NORD empfiehlt zertifizierten Unternehmen, den Prozess frühzeitig zu begleiten\n\nHannover, [Datum]. Die Arbeitsgruppe WG 8 der Internationalen Organisation für Normung (ISO) hat im März 2026 ein wichtiges Treffen zur laufenden Revision der ISO 22000 abgehalten. Die weltweit anerkannte Norm für Managementsysteme der Lebensmittelsicherheit wird aktualisiert, um aktuellen Entwicklungen und neuen Anforderungen in der Lebensmittelindustrie Rechnung zu tragen. Der Revisionsprozess befindet sich derzeit in einer frühen Phase, wobei erste Entwürfe in naher Zukunft erwartet werden.\n\nDie Aktualisierung der Norm zielt darauf ab, die Praxistauglichkeit für Lebensmittelhersteller und -verarbeiter weiter zu optimieren. Für nach ISO 22000 zertifizierte Unternehmen sowie für Auditoren und Lebensmittel-Sicherheitsexperten bedeutet dies, dass künftige Anpassungen an den eigenen Managementsystemen anstehen. „Normrevisionen sind essenziell, um Sicherheitsstandards an technologische und regulatorische Veränderungen anzupassen\", erklärt [Name, Funktion] bei der TÜV NORD GROUP. „Wir empfehlen betroffenen Unternehmen, den Fortschritt der Revision proaktiv zu verfolgen, um bei Veröffentlichung der neuen Anforderungen rechtzeitig reagieren zu können.\"\n\nUm den Übergang zur revidierten Norm vorzubereiten, sollten Firmen ihre aktuelle Dokumentation der Managementsysteme konsolidieren und für spätere Anpassungen bereithalten. Eine frühzeitige Informationsbeschaffung zu den geplanten Änderungen ist dabei entscheidend. Die TÜV NORD GROUP unterstützt Betriebe durch Lebensmittelsicherheits-Zertifizierungen nach ISO 22000, bei der strategischen Übergangsplanung bei Normenrevisionen sowie durch zielgerichtete Schulungen zu aktualisierten Anforderungen. Unternehmen wird geraten, sich frühzeitig über die angebotenen Unterstützungsleistungen zu informieren.\n\nÜber TÜV NORD\nDie TÜV NORD GROUP ist ein international tätiger Technologie-Dienstleister mit den Kernkompetenzen Beratung, Prüfung, Zertifizierung und Training. Mit mehr als 10.000 Mitarbeitenden an über 100 Standorten weltweit gehört sie zu den großen Prüfunternehmen. Der Geschäftsbereich Food unterstützt Unternehmen der gesamten Wertschöpfungskette bei der Sicherung und Zertifizierung von Lebensmittelsicherheit und Qualität."
     }
   ]
 }
