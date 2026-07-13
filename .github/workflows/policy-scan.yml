@@ -32,9 +32,7 @@ jobs:
           GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
           # Optional übersteuerbar:
           GLM_MODEL: ${{ vars.GLM_MODEL || 'glm-5.2' }}
-          SEARCH_RECENCY: ${{ vars.SEARCH_RECENCY || 'oneWeek' }}
-          # URL des Cloudflare Workers für die Live-Pressemitteilung (leer = Button erklärt sich als inaktiv)
-          PM_ENDPOINT: ${{ vars.PM_ENDPOINT }}
+          SEARCH_RECENCY: ${{ vars.SEARCH_RECENCY || 'oneMonth' }}
         run: python scan.py
 
       - name: Ergebnis committen

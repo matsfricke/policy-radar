@@ -15,10 +15,13 @@ Themen bewertet und PR-Winkel („Was jetzt tun") erzeugt. Das Ergebnis landet a
 2. **Auswerten** – GLM-5.2 wählt die relevanten Themen und liefert pro Thema in
    EINEM kombinierten Block: Bewertung (Relevanz / Timing / PR-Potenzial) und
    PR-Winkel nach der Erfolgsformel (Entwicklung → Auswirkung → Handlung → TÜV NORD
-   Lösung). Bei hoher Relevanz zusätzlich ein Presse-Überschriften-Vorschlag.
-3. **Veröffentlichen** – themen-zentrierte Website mit interaktivem Policy-Radar
-   (Relevanz × Timing). Wird als `docs/index.html` ins Repo committet und von
-   GitHub Pages ausgeliefert.
+   Lösung). Bei hoher Relevanz zusätzlich ein Presse-Überschriften-Vorschlag; wo es
+   belastbare Zahlen gibt, ein Statistik-Diagramm.
+3. **Pressemitteilung** – GLM-5.2 schreibt im selben Lauf pro Thema eine fertige
+   Pressemitteilung im TÜV-NORD-Stil vor. Sie liegt (versteckt) in der Seite und
+   erscheint per Knopfdruck – der GLM-Key bleibt sicher in GitHub, kein Backend nötig.
+4. **Veröffentlichen** – themen-zentrierte Website. Wird als `docs/index.html` ins
+   Repo committet und von GitHub Pages ausgeliefert.
 
 ## Historie
 
@@ -80,9 +83,8 @@ Optionale **Repo-Variablen** (Settings → Secrets and variables → Actions →
 
 | Variable         | Standard  | Zweck |
 |------------------|-----------|-------|
-| `SEARCH_RECENCY` | `oneWeek` | Suchzeitraum (`oneDay`/`oneWeek`/`oneMonth`) |
+| `SEARCH_RECENCY` | `oneMonth`| Suchzeitraum (`oneDay`/`oneWeek`/`oneMonth`) |
 | `GLM_MODEL`      | `glm-5.2` | Modell |
-| `PM_ENDPOINT`    | –         | URL des Cloudflare Workers für die Live-Pressemitteilung |
 
 Weiteres:
 

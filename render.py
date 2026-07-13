@@ -5,13 +5,11 @@ Themen-zentrierte, interaktive Website:
     (kein Scrollen zwischen Schritten); bei hoher Relevanz mit
     vorgeschlagener Presse-Überschrift.
   - pro Thema optional ein von GLM geliefertes Statistik-Diagramm (bar/line).
-  - Live-Pressemitteilung pro Thema (Button gegen Backend-Endpoint).
+  - pro Thema eine vorab von GLM geschriebene Pressemitteilung (per Button einblendbar).
   - Historie: build_archive_index() rendert die Übersicht vergangener Tage.
 """
 
 from __future__ import annotations
-import os
-import json
 import datetime as dt
 
 TEAL = "#008b8b"
@@ -201,11 +199,19 @@ def _topic_card(idx: int, t: dict) -> str:
         <div class="f-step"><span class="f-label">Handlung</span>{_bullets(t.get("was_tun"))}</div>
         <div class="f-step tuev"><span class="f-label">TÜV NORD Lösung</span>{_bullets(t.get("wo_tuev_nord_hilft"))}</div>
       </div>
-      <div class="pm-zone">
-        <button class="pm-btn" data-i="{idx}">✍️ Pressemitteilung live schreiben</button>
-        <div class="pm-out" id="pm-out-{idx}" hidden></div>
-      </div>
+      {_pm_zone(idx, t.get("pressemitteilung", ""))}
     </article>"""
+
+
+def _pm_zone(idx: int, pm: str) -> str:
+    pm = (pm or "").strip()
+    if not pm:
+        return ""
+    return f"""
+      <div class="pm-zone">
+        <button class="pm-btn" data-target="pm-out-{idx}">✍️ Pressemitteilung anzeigen</button>
+        <div class="pm-out" id="pm-out-{idx}" hidden>{_esc(pm)}<div class="pm-tools"><button class="pm-copy">📋 Kopieren</button></div></div>
+      </div>"""
 
 
 # --------------------------------------------------------------------------- #
@@ -221,19 +227,6 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
     themen = sorted(data.get("themen", []), key=_sort_key)
     cards = "".join(_topic_card(i, t) for i, t in enumerate(themen)) or \
         '<p class="empty">Heute keine relevanten neuen Themen erfasst.</p>'
-
-    # Vollständige Themendaten für die Live-Pressemitteilung (an das Backend gesendet)
-    pm_data = [{
-        "titel": t.get("titel", ""), "source": t.get("source", ""), "date": t.get("date", ""),
-        "url": t.get("url", ""), "bereich": t.get("bereich", ""),
-        "zusammenfassung": t.get("zusammenfassung", "") or t.get("kernaussage", ""),
-        "vorschlag_ueberschrift": t.get("vorschlag_ueberschrift", ""),
-        "was_aendert_sich": t.get("was_aendert_sich", ""), "wer_betroffen": t.get("wer_betroffen", ""),
-        "was_tun": t.get("was_tun", ""), "wo_tuev_nord_hilft": t.get("wo_tuev_nord_hilft", ""),
-    } for t in themen]
-
-    # Backend-URL für die Live-Pressemitteilung (leer = Feature erklärt sich als inaktiv)
-    pm_endpoint = json.dumps(os.environ.get("PM_ENDPOINT", "").strip())
 
     return f"""<!DOCTYPE html>
 <html lang="de">
@@ -359,41 +352,23 @@ def build_report(data: dict, generated_at: dt.datetime) -> str:
 </div>
 
 <script>
-  // --- Live-Pressemitteilung ---
-  // Backend-Endpoint (hält den GLM-Key geheim). Wird beim Setup gesetzt.
-  var PM_ENDPOINT = {pm_endpoint};
-  var PM = {json.dumps(pm_data, ensure_ascii=False)};
-
+  // --- Pressemitteilung: vorab von GLM geschrieben, hier ein-/ausblenden ---
   document.querySelectorAll('.pm-btn').forEach(function(btn) {{
     btn.addEventListener('click', function() {{
-      var i = +btn.getAttribute('data-i');
-      var out = document.getElementById('pm-out-' + i);
-      out.hidden = false; out.className = 'pm-out';
-      if (!PM_ENDPOINT) {{
-        out.className = 'pm-out err';
-        out.textContent = 'Live-Generierung ist noch nicht aktiviert: Es fehlt der Backend-Endpoint '
-          + '(hält den GLM-Key geheim). Sobald das Backend steht, wird hier die Pressemitteilung live geschrieben.';
-        return;
-      }}
-      btn.disabled = true; var old = btn.textContent; btn.textContent = '⏳ schreibe …';
-      out.textContent = 'GLM-5.2 schreibt die Pressemitteilung …';
-      fetch(PM_ENDPOINT, {{
-        method: 'POST', headers: {{'Content-Type': 'application/json'}},
-        body: JSON.stringify({{topic: PM[i]}})
-      }})
-      .then(function(r) {{ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }})
-      .then(function(d) {{
-        out.textContent = d.text || '(leere Antwort)';
-        var tools = document.createElement('div'); tools.className = 'pm-tools';
-        var cp = document.createElement('button'); cp.textContent = '📋 Kopieren';
-        cp.onclick = function() {{ navigator.clipboard.writeText(out.textContent.replace(/\\n?📋.*$/,'')); cp.textContent = '✓ kopiert'; }};
-        tools.appendChild(cp); out.appendChild(tools);
-      }})
-      .catch(function(e) {{
-        out.className = 'pm-out err';
-        out.textContent = 'Fehler bei der Live-Generierung: ' + e.message;
-      }})
-      .finally(function() {{ btn.disabled = false; btn.textContent = old; }});
+      var out = document.getElementById(btn.getAttribute('data-target'));
+      if (!out) return;
+      out.hidden = !out.hidden;
+      btn.textContent = out.hidden ? '✍️ Pressemitteilung anzeigen' : '✕ Pressemitteilung ausblenden';
+    }});
+  }});
+  document.querySelectorAll('.pm-copy').forEach(function(cp) {{
+    cp.addEventListener('click', function() {{
+      var box = cp.closest('.pm-out');
+      var text = box ? box.childNodes[0].textContent : '';
+      navigator.clipboard.writeText(text).then(function() {{
+        cp.textContent = '✓ kopiert';
+        setTimeout(function() {{ cp.textContent = '📋 Kopieren'; }}, 2000);
+      }});
     }});
   }});
 </script>

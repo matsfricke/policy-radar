@@ -271,6 +271,76 @@ def evaluate(items: list[dict]) -> dict:
 
 
 # --------------------------------------------------------------------------- #
+# Schritt 3 – Pressemitteilung je Thema (GLM-5.2 schreibt sie vor)
+# --------------------------------------------------------------------------- #
+
+PM_SYSTEM = ("Du bist Presseredakteur der TÜV NORD GROUP und schreibst "
+             "professionelle, sachliche Pressemitteilungen.")
+
+
+def _bullets_text(v) -> str:
+    if isinstance(v, (list, tuple)):
+        return "\n".join(f"- {x}" for x in v if str(x).strip())
+    return str(v or "")
+
+
+def _pm_prompt(t: dict) -> str:
+    return f"""Schreibe eine vollständige, veröffentlichungsfähige Pressemitteilung im
+nüchtern-sachlichen Stil der TÜV NORD GROUP zu folgendem Thema.
+
+Thema: {t.get('titel','')}
+Bereich: {t.get('bereich','')}
+Quelle: {t.get('source','')} ({t.get('date','')}) {t.get('url','')}
+Vorgeschlagene Überschrift: {t.get('vorschlag_ueberschrift') or '(frei wählen)'}
+
+Hintergrund:
+{t.get('zusammenfassung','')}
+
+Was ändert sich:
+{_bullets_text(t.get('was_aendert_sich'))}
+
+Wer ist betroffen:
+{_bullets_text(t.get('wer_betroffen'))}
+
+Was sollten Unternehmen jetzt tun:
+{_bullets_text(t.get('was_tun'))}
+
+Wie kann TÜV NORD helfen:
+{_bullets_text(t.get('wo_tuev_nord_hilft'))}
+
+Vorgaben: prägnante Überschrift, optional Unterzeile, dann Fließtext-Absätze;
+erster Absatz beantwortet Wer/Was/Wann/Warum; ein sachliches Zitat einer
+TÜV-NORD-Sprecherin/eines Experten als Platzhalter „[Name, Funktion]"; konkreter
+Handlungsaufruf ohne werbliche Übertreibung; reiner Fließtext (kein Markdown);
+Deutsch; 250–400 Wörter; am Ende kurzer Boilerplate „Über TÜV NORD" als Platzhalter."""
+
+
+def write_pressemitteilungen(themen: list[dict]) -> None:
+    """Schreibt pro Thema eine Pressemitteilung und hängt sie als t['pressemitteilung'] an.
+    Läuft im Batch auf GitHub (Key sicher) – kein Live-Backend nötig."""
+    if not themen:
+        return
+    print("Schritt 3 – Pressemitteilungen schreiben (GLM-5.2):")
+    for i, t in enumerate(themen, 1):
+        payload = {
+            "model": MODEL,
+            "temperature": 0.6,
+            "messages": [
+                {"role": "system", "content": PM_SYSTEM},
+                {"role": "user", "content": _pm_prompt(t)},
+            ],
+        }
+        try:
+            res = _post_with_retry(CHAT_URL, payload, timeout=180)
+            t["pressemitteilung"] = res["choices"][0]["message"]["content"].strip()
+            print(f"  · {i}/{len(themen)}: {t.get('titel','')[:50]} ✓")
+        except Exception as e:
+            t["pressemitteilung"] = ""
+            print(f"  ! {i}/{len(themen)}: fehlgeschlagen – {e}", file=sys.stderr)
+    print()
+
+
+# --------------------------------------------------------------------------- #
 # Historie / Archiv
 # --------------------------------------------------------------------------- #
 
@@ -332,6 +402,7 @@ def main() -> int:
         except Exception as e:
             print(f"FEHLER bei der Auswertung: {e}", file=sys.stderr)
             return 1
+        write_pressemitteilungen(data.get("themen", []))
 
     from render import build_report, build_archive_index
 
