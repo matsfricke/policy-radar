@@ -263,7 +263,9 @@ def evaluate(items: list[dict]) -> dict:
         ],
         "response_format": {"type": "json_object"},
     }
-    res = _post_with_retry(CHAT_URL, payload, timeout=180)
+    # Große Reasoning-Anfrage (bis zu 80 Fundstellen, 8 Themen inkl. Charts) –
+    # braucht spürbar mehr Zeit als eine einzelne Suchanfrage.
+    res = _post_with_retry(CHAT_URL, payload, timeout=300)
     content = res["choices"][0]["message"]["content"]
     data = _extract_json(content)
     print(f"  → {len(data.get('themen', []))} Themen ausgewertet\n")
@@ -331,7 +333,7 @@ def write_pressemitteilungen(themen: list[dict]) -> None:
             ],
         }
         try:
-            res = _post_with_retry(CHAT_URL, payload, timeout=180)
+            res = _post_with_retry(CHAT_URL, payload, timeout=240)
             t["pressemitteilung"] = res["choices"][0]["message"]["content"].strip()
             print(f"  · {i}/{len(themen)}: {t.get('titel','')[:50]} ✓")
         except Exception as e:
